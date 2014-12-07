@@ -1,23 +1,22 @@
 .navbar {
-	height: 20px;
-	background-color: #FFE4E3;
 	margin-bottom: 0;
 }
 
 body {
-	background-color: #CEE0C8;
+	background-image: url('./img/background.jpg');
 }
 
 #register {
+	color: white;
 	min-height: 200px;
-	background-image: url('./img/background.jpg');
 	margin-top: 0;
 }
 
-.rson {
-	height: 200px;
-	background-color: #EDF3EB;
-	border-width: 1px 0px 1px 0px;
-	border-style: solid;
+.main {
+	background-color: rgba(255, 255, 255, 0.7);
 }
+
+.main-col {
+	height: 400px;
+
 

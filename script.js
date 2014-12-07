@@ -4,7 +4,7 @@ gltypeApp.config(function($routeProvider) {
         $routeProvider
 
             // route for the home page
-            .when('/', {
+            .when('/index', {
                 templateUrl : 'pages/home.html',
                 controller  : 'mainController'
             })
