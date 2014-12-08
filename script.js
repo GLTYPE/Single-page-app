@@ -20,10 +20,14 @@ gltypeApp.config(function($routeProvider) {
                 templateUrl : 'pages/contact.html',
                 controller  : 'contactController'
             });
+
     });
 
 gltypeApp.controller('mainController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
+        $scope.isConnected = 0;
+        $scope.user = "sirRoux";
+        $scope.locate = "index";
 	});
 
 gltypeApp.controller('aboutController', function($scope) {
@@ -39,3 +43,4 @@ gltypeApp.controller('aboutController', function($scope) {
    	gltypeApp.controller('contactController', function($scope) {
    		$scope.webmaster = "Gilles TUAL";
     });
+

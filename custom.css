@@ -18,5 +18,24 @@ body {
 
 .main-col {
 	height: 400px;
+}
 
+#navLogin  {
+	color: #852A2A;
+}
 
+footer {
+	background-color: #272822;
+	color: white;
+	min-height: 200px;
+}
+
+.about {
+	background-color: rgba(255, 255, 255, 0.7);
+	min-height: 800px;
+}
+
+.contact {
+	background-color: rgba(255, 255, 255, 0.7);
+	min-height: 800px;
+}

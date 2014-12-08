@@ -22,7 +22,7 @@
 
 
             <div class="navbar navbar-inverse">
-	            <div class="container">
+	            <div class="container" ng-if="isConnected == 0">
 
 	                <div class="navbar-header">
                       <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,17 +36,61 @@
 	                    <li><a href="#index"><i class="fa fa-home"></i> Home</a></li>
 	                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
 	                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                      <li class="dropdown" id="menuLogin">
+                        <a class="dropdown-toggle fa fa-circle" href="{{ locate }}" data-toggle="dropdown" id="navLogin"> Login</a>
+                        <div class="dropdown-menu" style="padding:17px;">
+                          <form role="form" id="formLogin"> 
+                            <div class="form-group">
+                              <label for="username" class="text-left">username:</label>
+                              <input type="text" class="form-control" id="username"/>
+                            </div>
+                            <div class="form-group">
+                              <label for="password" class="text-left">Password:</label>
+                              <input type="text" class="form-control" id="password"/>
+                            </div>
+                            <div class="input-group center-block">
+                              <input type="submit" value="Log in!" class="btn btn-success btn-lg"/>
+                            </div>
+                          </form>
+                        </div>
+                      </li>
+                      <!--<li><a href="#login"><i class="fa fa-circle"></i> Log in</a></li>-->
 	                  </ul>
                   </div>
 	            </div>
+
+              <div class="container" ng-if="isConnected == 1">
+
+                  <div class="navbar-header">
+                      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                      </button>
+                      <a class="navbar-brand" href="#index">NOURRITURE</a>
+                  </div>
+
+                  <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#index"><i class="fa fa-home"></i> Home</a></li>
+                    </ul>
+                  </div>
+              </div>
+
             </div>
 
-
-        <div class="container">
-			<div class="row">
-				<div class="col-md-12" id="main">
 					<div ng-view></div>
-				</div>
+
+        <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <p>This is a footer</p>
+          </div>
+          <div class="col-md-6 text-center">
+            <p>To put some useful information in it</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 	</body>
 </html>
