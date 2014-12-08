@@ -4,7 +4,7 @@ gltypeApp.config(function($routeProvider) {
         $routeProvider
 
             // route for the home page
-            .when('/index', {
+            .when('/', {
                 templateUrl : 'pages/home.html',
                 controller  : 'mainController'
             })
@@ -19,15 +19,25 @@ gltypeApp.config(function($routeProvider) {
             .when('/contact', {
                 templateUrl : 'pages/contact.html',
                 controller  : 'contactController'
+            })
+
+            // route for the profil page
+            .when('/profil', {
+                templateUrl : 'pages/profil.html',
+                controller  : 'profilController'
             });
 
     });
 
 gltypeApp.controller('mainController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
-        $scope.isConnected = 0;
+        $scope.isConnected = 1;
         $scope.user = "sirRoux";
+        $scope.role = "Food Supplier";
+        $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
+        $scope.icon = "./img/iconme.png";
+        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
 	});
 
 gltypeApp.controller('aboutController', function($scope) {
@@ -40,7 +50,11 @@ gltypeApp.controller('aboutController', function($scope) {
         {firstname: 'Yan', lastname:'', img: './img/empty.jpg', role: 'Android Developer', age:'?'}];
     });
 
-   	gltypeApp.controller('contactController', function($scope) {
+gltypeApp.controller('contactController', function($scope) {
    		$scope.webmaster = "Gilles TUAL";
+    });
+
+gltypeApp.controller('profilController', function($scope) {
+        $scope.webmaster = "Gilles TUAL";
     });
 

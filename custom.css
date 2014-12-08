@@ -14,10 +14,7 @@ body {
 
 .main {
 	background-color: rgba(255, 255, 255, 0.7);
-}
-
-.main-col {
-	height: 400px;
+	padding-bottom: 20px;
 }
 
 #navLogin  {
@@ -38,4 +35,26 @@ footer {
 .contact {
 	background-color: rgba(255, 255, 255, 0.7);
 	min-height: 800px;
+}
+
+.profil {
+	background-color: rgba(255, 255, 255, 0.7);
+	min-height: 800px;
+}
+
+#profil-info {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.catch {
+	padding-top: 100px;
+}
+
+#bio {
+	float: right;
+	color: white;
+}
+
+#bio h2{
+	color: #BF0000;
 }
