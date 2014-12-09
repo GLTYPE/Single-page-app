@@ -31,13 +31,19 @@ gltypeApp.config(function($routeProvider) {
 
 gltypeApp.controller('mainController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
-        $scope.isConnected = 1;
+        $scope.isConnected = 0;
         $scope.user = "sirRoux";
         $scope.role = "Food Supplier";
         $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
         $scope.icon = "./img/iconme.png";
         $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
+        $scope.connect = function(){
+            if ($scope.isConnected == 0)
+                $scope.isConnected = 1;
+            else
+                $scope.isConnected = 0;
+        }
 	});
 
 gltypeApp.controller('aboutController', function($scope) {
