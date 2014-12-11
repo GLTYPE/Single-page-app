@@ -28,7 +28,7 @@
                       <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="glyphicon glyphicon-eye-open"></span>
                       </button>
-	                    <a class="navbar-brand" href="#index">NOURRITURE</a>
+	                    <a class="navbar-brand" href="#">NOURRITURE</a>
 	                </div>
 
 	                <div class="collapse navbar-collapse">
@@ -59,25 +59,27 @@
 	                  </ul>
                   </div>
 	            </div>
-
               <div class="container" ng-if="isConnected == 1">
 
                   <div class="navbar-header">
                       <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="glyphicon glyphicon-eye-open"></span>
                       </button>
-                      <a class="navbar-brand" href="#index">NOURRITURE</a>
+                      <a class="navbar-brand" href="#">NOURRITURE</a>
                   </div>
 
                   <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                       <li><a href="#search"><i class="fa fa-search"></i> Search</a></li>
                       <!-- <li><a href="#profil"><img src="{{ icon }}"/> Profil</a></li> -->
                       <li class="dropdown" id="menuProfil">
                         <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navProfil"><img src="{{ icon }}"/> Profil</a>
-                        <div class="dropdown-menu" style="padding:17px;">
-                          <button ng-click="connect()" type="button" class="btn btn-default">Log in Dev</button>
-                        </div>
+                        <ul class="dropdown-menu" style="padding:17px;">
+                          <li><a role="menuitem" tabindex="-1" href="#profil">Profil page</a></li>
+                          <li><a role="menuitem" tabindex="-1" href="#">Settings </a></li>
+                          <li><a ng-click="connect()" role="menuitem" tabindex="-1" href="#">Disconnect (DEV)</a></li>
+                        </ul>
                       </li>
                     </ul>
                   </div>

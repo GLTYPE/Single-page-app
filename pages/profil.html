@@ -3,23 +3,33 @@
 			<div class="col-md-12 text-center">
 
 				<h1>Your profil<br><small>You look nice today ! </small></h1>
+				<button type="button" class="btn btn-default" id="profil_edit_btn">
+					<span class="fa fa-pencil-square-o"></span> Edit profil
+				</button>
 				<hr>
 
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-12 text-center">
 
 				<h1>{{ user }} <small>{{ role }} </small></h1>
+				<br/>
 
 			</div>
 			<div id="profil-info">
-				<div class="col-md-12">
-
+				<div class="col-md-6 text-center">
 					<img src="{{ profilpic }}" alt="profil pic"/>
+				</div>
+				<div class="col-md-6">
 					<div id="bio">
 						<h2>About me </h2>
-						<p> {{ bio }}</p>
+						<p>{{ bio }}</p>
 					</div>
+				</div>
+				<div class="col-md-12">
+
+					
+					
 
 				</div>
 			</div>

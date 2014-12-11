@@ -21,6 +21,12 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'contactController'
             })
 
+            // route for the search page
+            .when('/search', {
+                templateUrl : 'pages/search.html',
+                controller  : 'searchController'
+            })
+
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
@@ -58,6 +64,11 @@ gltypeApp.controller('aboutController', function($scope) {
 
 gltypeApp.controller('contactController', function($scope) {
    		$scope.webmaster = "Gilles TUAL";
+    });
+
+gltypeApp.controller('searchController', function($scope) {
+        $scope.foodDummy = [{type:'Recipe', name:'Phare Breton', img: './img/food.jpg', desc: 'A good dessert !'},
+        {type:'Food', name:'Apple', img: './img/apple.jpg', desc: 'The best fruit ! Ask to newton !'}];
     });
 
 gltypeApp.controller('profilController', function($scope) {

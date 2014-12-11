@@ -46,6 +46,11 @@ footer {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+.search {
+	background-color: rgba(255, 255, 255, 0.7);
+	min-height: 800px;
+}
+
 .catch {
 	padding-top: 100px;
 }
@@ -57,4 +62,15 @@ footer {
 
 #bio h2{
 	color: #BF0000;
+}
+
+#profil_edit_btn {
+	float: right;
+}
+
+.searchResult {
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 0.7);
+	margin: 5px 0px 5px 10px;
+	padding: 10px 0px 10px 0px;
 }
