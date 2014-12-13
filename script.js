@@ -1,4 +1,7 @@
-﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute']);
+﻿// TODO: Change it in prod
+var BASE_API = "https://localhost:4242";
+
+var gltypeApp = angular.module('gltypeApp', ['ngRoute']);
 
 gltypeApp.config(function($routeProvider) {
         $routeProvider
@@ -40,7 +43,7 @@ gltypeApp.config(function($routeProvider) {
 
     });
 
-gltypeApp.controller('mainController', function($scope) {
+gltypeApp.controller('mainController', function($scope, $http) {
 		$scope.webmaster = "Gilles TUAL";
         $scope.isConnected = 0;
         $scope.user = "sirRoux";
@@ -55,7 +58,34 @@ gltypeApp.controller('mainController', function($scope) {
             else
                 $scope.isConnected = 0;
         }
-	});
+        $scope.new_user = {};
+
+        $scope.register = function (person)
+        {
+          var config = {
+            params: {            	
+            	firstname:	person.firstname,
+            	lastname:	person.lastname,
+            	picture:	person.picture,
+            	email:		person.email,
+            	about:		person.about,
+            	role:		person.role,
+            	password:	person.password
+            }
+          };
+
+          $http.post(BASE_API+"/users", null, config)
+            .success(function (data, status, headers, config)
+            {
+            	alert(data);
+            })
+            .error(function (data, status, headers, config)
+            {
+            	alert(data);
+            });
+        };
+
+});
 
 gltypeApp.controller('aboutController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
