@@ -1,4 +1,4 @@
-<div class="container profil">
+<div class="container main-content">
 		<div class="row">
 			<div class="col-md-12 text-center">
 
@@ -23,7 +23,9 @@
 				<div class="col-md-6">
 					<div id="bio">
 						<h2>About me </h2>
-						<p>{{ bio }}</p>
+						<div>
+							<p editable-text="bio">{{ bio || "empty"}}</p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-12">

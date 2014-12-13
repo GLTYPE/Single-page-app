@@ -1,7 +1,8 @@
 ﻿// TODO: Change it in prod
 var BASE_API = "https://localhost:4242";
 
-var gltypeApp = angular.module('gltypeApp', ['ngRoute']);
+﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable']);
+
 
 gltypeApp.config(function($routeProvider) {
         $routeProvider
@@ -35,6 +36,21 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'foodController'
             })
 
+            .when('/admin', {
+                templateUrl : 'pages/admin.html',
+                controller  : 'adminController'
+            })
+
+            .when('/promote', {
+                templateUrl : 'pages/promote.html',
+                controller  : 'promoteController'
+            })
+
+            .when('/stats', {
+                templateUrl : 'pages/stats.html',
+                controller  : 'statsController'
+            })
+
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
@@ -42,6 +58,10 @@ gltypeApp.config(function($routeProvider) {
             });
 
     });
+
+gltypeApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
 
 gltypeApp.controller('mainController', function($scope, $http) {
 		$scope.webmaster = "Gilles TUAL";
@@ -51,7 +71,6 @@ gltypeApp.controller('mainController', function($scope, $http) {
         $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
         $scope.icon = "./img/iconme.png";
-        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
         $scope.connect = function(){
             if ($scope.isConnected == 0)
                 $scope.isConnected = 1;
@@ -111,7 +130,20 @@ gltypeApp.controller('foodController', function($scope) {
         {type:'Food', name:'Apple', img: './img/apple.jpg', desc: 'The best fruit ! Ask to newton !'}];
     });
 
+gltypeApp.controller('adminController', function($scope) {
+
+    });
+
+gltypeApp.controller('promoteController', function($scope) {
+
+    });
+
+gltypeApp.controller('statsController', function($scope) {
+
+    });
+
 gltypeApp.controller('profilController', function($scope) {
         $scope.webmaster = "Gilles TUAL";
+        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
     });
 
