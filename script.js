@@ -87,9 +87,7 @@ gltypeApp.controller('userController', function($scope, $http)
 	    //Register User to the API
 	    $scope.register = function (person)
 	    {
-	      var config = {
-	    		  
-	        params: {            	
+	      var datas = {
 	        	firstname:	person.firstname,
 	        	lastname:	person.lastname,
 	        	picture:	person.picture,
@@ -97,43 +95,50 @@ gltypeApp.controller('userController', function($scope, $http)
 	        	about:		person.about,
 	        	role:		person.role,
 	        	password:	person.password
-	        }
-	      };
-	      $http.post(BASE_API+"/users", null, config)
-	        .success(function (data, status, headers, config)
-	        {
-	        	alert(data);
-	        })
-	        .error(function (data, status, headers, config)
-	        {
-	        	alert(data);
-	        });
-	    };
+	        };
+	      $http({
+	            url: BASE_API + "/users",
+	            dataType: 'json',
+	            method: 'POST',
+	            data: datas,
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	            .success(function (data, status, headers, config) {
+	                alert(data);
+	            }).error(function (data, status, headers, config) {
+	                alert(data);
+	            });
+	    	};
 	
 	    //Log in a User
 	    $scope.login = function (person)
 	    {
-	      var config = {
-	        params: {
+	      var datas = {
 	        	email:		person.email,
 	        	password:	person.password
-	        }
 	      };
-	      $http.post(BASE_API+"/connect", null, config)
-	        .success(function (data, status, headers, config)
-	        {
-	        	if (status == 400)
-	        		alert(data);
-	        	else if (status == 200)
-	        		{
-	        			alert("done");
-	        			$cookieStore.put("TOKEN", data);
-	        		}
-	        })
-	        .error(function (data, status, headers, config)
-	        {
-	        	alert(data);
-	        });
+	      
+	       $http({
+	            url: BASE_API + "/users/connect",
+	            dataType: 'json',
+	            method: 'POST',
+	            data: datas,
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	            .success(function (data, status, headers, config) {
+	            	if (status == 400)
+		        		alert(data);
+		        	else if (status == 200)
+		        		{
+		        			alert("done");
+		        			$cookieStore.put("TOKEN", data);
+		        		}
+            	})
+            	.error(function (data, status, headers, config) {
+	                alert(data);
+	            });
 	    };
 	
 	});
