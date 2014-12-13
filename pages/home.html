@@ -15,7 +15,7 @@
 
 			<div class="col-md-6 text-center">
 				<h2 class="bold">Register now and enjoy Nourriture !</h2><br/>
-				<form role="form" id="register-form" ng-submit="register(new_user)">
+				<form role="form" id="register-form" ng-submit="register(new_user)" ng-controller="userController" >
 					<div class="form-group">
 						<label for="firstname" class="text-left">First name:</label>
 						<input type="text" class="form-control" placeholder="first name" id="firstname" ng-model="new_user.firstname"/>

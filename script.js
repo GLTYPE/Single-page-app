@@ -76,34 +76,67 @@ gltypeApp.controller('mainController', function($scope, $http) {
                 $scope.isConnected = 1;
             else
                 $scope.isConnected = 0;
-        }
-        $scope.new_user = {};
-
-        $scope.register = function (person)
-        {
-          var config = {
-            params: {            	
-            	firstname:	person.firstname,
-            	lastname:	person.lastname,
-            	picture:	person.picture,
-            	email:		person.email,
-            	about:		person.about,
-            	role:		person.role,
-            	password:	person.password
-            }
-          };
-          $http.post(BASE_API+"/users", null, config)
-            .success(function (data, status, headers, config)
-            {
-            	alert(data);
-            })
-            .error(function (data, status, headers, config)
-            {
-            	alert(data);
-            });
-        };
-
+        }        
 });
+
+gltypeApp.controller('userController', function($scope, $http)
+		{
+	
+	    $scope.new_user = {};
+	
+	    //Register User to the API
+	    $scope.register = function (person)
+	    {
+	      var config = {
+	    		  
+	        params: {            	
+	        	firstname:	person.firstname,
+	        	lastname:	person.lastname,
+	        	picture:	person.picture,
+	        	email:		person.email,
+	        	about:		person.about,
+	        	role:		person.role,
+	        	password:	person.password
+	        }
+	      };
+	      $http.post(BASE_API+"/users", null, config)
+	        .success(function (data, status, headers, config)
+	        {
+	        	alert(data);
+	        })
+	        .error(function (data, status, headers, config)
+	        {
+	        	alert(data);
+	        });
+	    };
+	
+	    //Log in a User
+	    $scope.login = function (person)
+	    {
+	      var config = {
+	        params: {
+	        	email:		person.email,
+	        	password:	person.password
+	        }
+	      };
+	      $http.post(BASE_API+"/connect", null, config)
+	        .success(function (data, status, headers, config)
+	        {
+	        	if (status == 400)
+	        		alert(data);
+	        	else if (status == 200)
+	        		{
+	        			alert("done");
+	        			$cookieStore.put("TOKEN", data);
+	        		}
+	        })
+	        .error(function (data, status, headers, config)
+	        {
+	        	alert(data);
+	        });
+	    };
+	
+	});
 
 gltypeApp.controller('aboutController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
