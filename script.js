@@ -34,6 +34,21 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'foodController'
             })
 
+            .when('/admin', {
+                templateUrl : 'pages/admin.html',
+                controller  : 'adminController'
+            })
+
+            .when('/promote', {
+                templateUrl : 'pages/promote.html',
+                controller  : 'promoteController'
+            })
+
+            .when('/stats', {
+                templateUrl : 'pages/stats.html',
+                controller  : 'statsController'
+            })
+
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
@@ -84,6 +99,18 @@ gltypeApp.controller('searchController', function($scope) {
 gltypeApp.controller('foodController', function($scope) {
         $scope.foodDummy = [{type:'Recipe', name:'Phare Breton', img: './img/food.jpg', desc: 'A good dessert !'},
         {type:'Food', name:'Apple', img: './img/apple.jpg', desc: 'The best fruit ! Ask to newton !'}];
+    });
+
+gltypeApp.controller('adminController', function($scope) {
+
+    });
+
+gltypeApp.controller('promoteController', function($scope) {
+
+    });
+
+gltypeApp.controller('statsController', function($scope) {
+
     });
 
 gltypeApp.controller('profilController', function($scope) {
