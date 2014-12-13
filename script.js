@@ -1,4 +1,6 @@
-﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute']);
+﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable']);
+
+
 
 gltypeApp.config(function($routeProvider) {
         $routeProvider
@@ -40,6 +42,10 @@ gltypeApp.config(function($routeProvider) {
 
     });
 
+gltypeApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
 gltypeApp.controller('mainController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
         $scope.isConnected = 0;
@@ -48,7 +54,6 @@ gltypeApp.controller('mainController', function($scope) {
         $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
         $scope.icon = "./img/iconme.png";
-        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
         $scope.connect = function(){
             if ($scope.isConnected == 0)
                 $scope.isConnected = 1;
@@ -83,5 +88,6 @@ gltypeApp.controller('foodController', function($scope) {
 
 gltypeApp.controller('profilController', function($scope) {
         $scope.webmaster = "Gilles TUAL";
+        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
     });
 
