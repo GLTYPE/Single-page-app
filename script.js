@@ -1,5 +1,5 @@
 ﻿// TODO: Change it in prod
-var BASE_API = "https://localhost:4242";
+var BASE_API = "http://localhost:4242";
 
 ﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable']);
 
@@ -92,7 +92,6 @@ gltypeApp.controller('mainController', function($scope, $http) {
             	password:	person.password
             }
           };
-
           $http.post(BASE_API+"/users", null, config)
             .success(function (data, status, headers, config)
             {

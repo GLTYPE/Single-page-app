@@ -22,21 +22,22 @@
 					</div>
 					<div class="form-group">
 						<label for="lastname" class="text-left">Last name:</label>
-						<input type="text" class="form-control" placeholder="last name" id="lastname"/>
+						<input type="text" class="form-control" placeholder="last name" id="lastname" ng-model="new_user.lastname" />
 					</div>
 					<div class="form-group">
 						<label for="email" class="text-left">Email:</label>
-						<input type="email" class="form-control" placeholder="email..." id="email" ng-model="new_user.email" />
+						<input type="email" class="form-control" placeholder="email..." id="email" ng-model="new_user.email" ng-model="new_user.email" />
 					</div>
 					<div class="form-group">
 						<label for="password" class="text-left">Password:</label>
-						<input type="password" class="form-control" placeholder="password" id="password"/>
+						<input type="password" class="form-control" placeholder="password" id="password" ng-model="new_user.password"/>
 					</div>
 					<label for="role" class="text-left">Role:</label>
-					<select class="form-control" id="role">
-  						<option>I'm a Consumer</option>
-						<option>I'm a Food supplier</option>
-						<option>I'm a Gastronomist</option>
+					<select class="form-control" id="role" ng-model="new_user.role" >
+  						<option value="1">I'm a Consumer</option>
+						<option value="2">I'm a Food supplier</option>
+						<option value="3">I'm a Gastronomist</option>
+						<option value="4">I'm an Admin</option>
 					</select>
 					<br/>
 					<div class="input-group center-block">
