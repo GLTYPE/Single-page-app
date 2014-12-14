@@ -1,7 +1,7 @@
 ﻿// TODO: Change it in prod
 var BASE_API = "http://localhost:4242";
 
-﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable']);
+﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable', 'ngCookies']);
 
 
 gltypeApp.config(function($routeProvider) {
@@ -63,23 +63,17 @@ gltypeApp.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-gltypeApp.controller('mainController', function($scope, $http) {
+gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
 		$scope.webmaster = "Gilles TUAL";
-        $scope.isConnected = 0;
+        $scope.isConnected = ($cookieStore.get('TOKEN') == undefined) ? 0 : 1;
         $scope.user = "sirRoux";
         $scope.role = "Food Supplier";
         $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
         $scope.icon = "./img/iconme.png";
-        $scope.connect = function(){
-            if ($scope.isConnected == 0)
-                $scope.isConnected = 1;
-            else
-                $scope.isConnected = 0;
-        }        
 });
 
-gltypeApp.controller('userController', function($scope, $http)
+gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 		{
 	
 	    $scope.new_user = {};
@@ -133,8 +127,34 @@ gltypeApp.controller('userController', function($scope, $http)
 		        	else if (status == 200)
 		        		{
 		        			alert("done");
-		        			$cookieStore.put("TOKEN", data);
+		        			$cookieStore.put("TOKEN", data.slice(1, -1));
+		        			$cookieStore.put("email", person.email);
+		        			$cookieStore.put("password", person.password);
 		        		}
+            	})
+            	.error(function (data, status, headers, config) {
+	                alert(data);
+	            });
+	    };
+	    
+	    //Log out a User
+	    $scope.logout = function ()
+	    {
+	      var datas = {
+	        	token:		$cookieStore.get("TOKEN")
+	      };
+	      
+	       $http({
+	            url: BASE_API + "/users/disconnect",
+	            dataType: 'json',
+	            method: 'POST',
+	            data: datas,
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	            .success(function (data, status, headers, config) {
+        			alert("done");
+        			$cookieStore.remove("TOKEN");
             	})
             	.error(function (data, status, headers, config) {
 	                alert(data);
@@ -179,8 +199,33 @@ gltypeApp.controller('statsController', function($scope) {
 
     });
 
-gltypeApp.controller('profilController', function($scope) {
+gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
         $scope.webmaster = "Gilles TUAL";
         $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
+        
+	      var datas = {
+	        	token:		$cookieStore.get("TOKEN")
+	      };
+	      
+	       $http({
+	            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
+	            dataType: 'json',
+	            method: 'POST',
+	            data: datas,
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	            .success(function (data, status, headers, config) {
+	            	$scope.firstname = "";
+	            	$scope.lastname = "";
+	            	$scope.picture = "";
+	            	$scope.email = "";
+	            	$scope.about = "";
+	            	$scope.role = "";
+	            	$scope.bio = "";
+	            })
+            	.error(function (data, status, headers, config) {
+	                alert(data);
+	            });
     });
 
