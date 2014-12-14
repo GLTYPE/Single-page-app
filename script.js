@@ -1,7 +1,7 @@
 ﻿// TODO: Change it in prod
 var BASE_API = "http://localhost:4242";
 
-﻿var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable', 'ngCookies']);
+var gltypeApp = angular.module('gltypeApp', ['ngRoute', 'xeditable', 'ngCookies']);
 
 
 gltypeApp.config(function($routeProvider) {
@@ -50,7 +50,27 @@ gltypeApp.config(function($routeProvider) {
                 templateUrl : 'pages/stats.html',
                 controller  : 'statsController'
             })
+            
+            .when('/ingredient/:ingredientId', {
+                templateUrl : 'pages/ingredients.html',
+                controller  : 'ingredientController'
+            })
 
+            .when('/add/ingredient', {
+                templateUrl : 'pages/ingredients-add.html',
+                controller  : 'ingredientController'
+            })
+            
+            .when('/product/:productId', {
+                templateUrl : 'pages/products.html',
+                controller  : 'productController'
+            })
+
+            .when('/add/product', {
+                templateUrl : 'pages/products-add.html',
+                controller  : 'productController'
+            })
+            
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
@@ -259,3 +279,179 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 	       
     });
 
+gltypeApp.controller('ingredientController', function($scope, $http, $cookieStoren, $routeParams) {
+    $scope.ing= {};
+    if ($routeParams.ingredientId != undefined)
+	    $http({
+	        url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+	        dataType: 'json',
+	        method: 'GET',
+	        data: {
+	        	token:		$cookieStore.get("TOKEN"),
+	        	id:			$scope.ingredientId        	
+	        },
+	        headers: {
+	            "Content-Type": "application/json"
+	        }})
+	        .success(function (data, status, headers, config) {
+	        	$scope.name = data.name;
+	        	$scope.ing.name= data.name;
+	        	$scope.picture= data.picture;
+	        	$scope.ing.picture= data.picture;
+	        	$scope.description = data.description;
+	        	$scope.ing.description = data.description;
+	        	$scope.values = data.values;
+	        	$scope.ing.values= data.values;
+	        })
+	    	.error(function (data, status, headers, config) {
+	            alert(data);
+	        });
+       	
+	
+    //Update ing
+    $scope.edit_ing = function ($ing)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:	$ing.name,
+          	picture:	$ing.picture,
+          	description:		$ing.description,
+          	values:		$ing.values
+      };
+      
+       $http({
+            url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+            dataType: 'json',
+            method: 'PUT',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+
+    //add ing
+    $scope.add_ing = function ($ing)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:	$ing.name,
+          	picture:	$ing.picture,
+          	description:		$ing.description,
+          	values:		$ing.values
+      };
+      
+       $http({
+            url: BASE_API + "/ingredients",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+    
+    
+});
+
+gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
+    $scope.product= {};
+    if ($routeParams.productId != undefined)
+	    $http({
+	        url: BASE_API + "/products/"+$routeParams.productId,
+	        dataType: 'json',
+	        method: 'GET',
+	        data: {
+	        	token:		$cookieStore.get("TOKEN"),
+	        },
+	        headers: {
+	            "Content-Type": "application/json"
+	        }})
+	        .success(function (data, status, headers, config) {
+	        	$scope.name = data.name;
+	        	$scope.product.name= data.name;
+	
+	        	$scope.name = data.brand;
+	        	$scope.product.brand = data.brand;
+	
+	        	
+	        	$scope.picture= data.picture;
+	        	$scope.product.picture= data.picture;
+	        	$scope.description = data.description;
+	        	$scope.product.description = data.description;
+	        	$scope.values = data.values;
+	        	$scope.product.values= data.values;
+	        })
+	    	.error(function (data, status, headers, config) {
+	            alert(data);
+	        });
+       	
+	
+    //Update product
+    $scope.edit_product = function ($product)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:			$product.name,
+          	picture:		$product.picture,
+          	description:	$product.description,
+          	values:			$product.values,
+          	brand:			$product.brand
+      };
+      
+       $http({
+            url: BASE_API + "/products/"+$routeParams.productId,
+            dataType: 'json',
+            method: 'PUT',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+    
+    //Add product
+    $scope.add_product = function ($product)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:			$product.name,
+          	picture:		$product.picture,
+          	description:	$product.description,
+          	values:			$product.values,
+          	brand:			$product.brand
+      };
+      
+       $http({
+            url: BASE_API + "/products",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    }; 
+    
+});

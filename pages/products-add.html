@@ -18,7 +18,7 @@
                 <img src="{{ profilpic }}" alt="profil pic"/>
             </div>
             <div class="col-md-8">
-                <form ng-submit="edit_product(product)">
+                <form ng-submit="add_product(product)">
                     <label for="name" class="text-left">Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}" ng-model="product.name">
 
@@ -34,7 +34,7 @@
                     <label for="values" class="text-left">Values:</label>
                     <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="product.values" >
 
-                    <input type="submit" value="Edit"/>
+                    <input type="submit" value="Add"/>
                 </form>
             </div>
             <div class="col-md-12">
