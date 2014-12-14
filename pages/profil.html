@@ -3,9 +3,9 @@
 			<div class="col-md-12 text-center">
 
 				<h1>Your profil<br><small>You look nice today ! </small></h1>
-				<button type="button" class="btn btn-default" id="profil_edit_btn">
+				<!--<button type="button" class="btn btn-default" id="profil_edit_btn">
 					<span class="fa fa-pencil-square-o"></span> Edit profil
-				</button>
+				</button>-->
 				<hr>
 
 			</div>
@@ -20,13 +20,20 @@
 				<div class="col-md-6 text-center">
 					<img src="{{ profilpic }}" alt="profil pic"/>
 				</div>
-				<div class="col-md-6">
-					<div>
-						<h2>About me </h2>
+                <div class="col-md-6">
+                    <form>
+                        Picture : <input type="text" name="picture" value="{{picture}}"><br />
+                        email : <input type="text" name="email" value="{{email}}"><br />
+                        About : <TEXTAREA name="about" rows=2 COLS=40>{{about}}</TEXTAREA><br />
+                        password: <input type="text" name="password" value="{{password}}"><br/>
+                        <input type="submit" value="Edit"/>
+                    </form>
+                    <!--<div id="bio">
+                        <h2>About me </h2>
 						<div>
 							<p >{{ about || "empty"}}</p>
 						</div>
-					</div>
+					</div>-->
 				</div>
 				<div class="col-md-12">
 
