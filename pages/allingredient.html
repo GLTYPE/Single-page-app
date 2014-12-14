@@ -1,0 +1,18 @@
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Ingredients</h1>
+            <hr>
+        </div>
+        <div class="col-md-12 text-center">
+        </div>
+        <div id="profil-info">
+            <div class="col-md-8" ng-repeat-start="ing in ings">
+                <h2>{{ing.name}}</h2>
+                <img src="{{ing.picture}}" alt="{{ing.name}}" href="#product/{{ing._id}}"/>
+            </div ng-repeat-end>
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
