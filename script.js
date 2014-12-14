@@ -201,30 +201,61 @@ gltypeApp.controller('statsController', function($scope) {
 
 gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
         $scope.webmaster = "Gilles TUAL";
-        
-	      var datas = {
-	        	token:		$cookieStore.get("TOKEN")
-	      };
-	      
-	       $http({
-	            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
-	            dataType: 'json',
-	            method: 'GET',
-	            data: datas,
-	            headers: {
-	                "Content-Type": "application/json"
-	            }})
-	            .success(function (data, status, headers, config) {
-	            	$scope.firstname = data.firstname;
-	            	$scope.lastname = data.lastname;
-	            	$scope.picture = data.picture;
-	            	$scope.email = data.email;
-	            	$scope.about = data.about;           	
-	            	$scope.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
-	            	$scope.moments = data.moments;
-	            })
-            	.error(function (data, status, headers, config) {
-	                alert(data);
-	            });
+        $scope.user = {};
+	    $http({
+            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
+            dataType: 'json',
+            method: 'GET',
+            data: {token:		$cookieStore.get("TOKEN")},
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+            	$scope.firstname = data.firstname;
+            	$scope.user.email = data.firstname;
+            	$scope.lastname = data.lastname;
+            	$scope.user.lastname = data.lastname;
+            	$scope.picture = data.picture;
+            	$scope.user.picture = data.picture;
+            	$scope.email = data.email;
+            	$scope.user.email = data.email;
+            	$scope.about = data.about;           	
+            	$scope.user.about = data.about;
+            	$scope.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
+            	$scope.moments = data.moments;
+            })
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+	       
+	       
+		    //Update User
+		    $scope.update_profil = function ($user)
+		    {
+		      var datas = {
+		        	token:		$cookieStore.get("TOKEN"),
+		          	picture:	$user.picture,
+		          	email:		$user.email,
+		          	about:		$user.about
+		      };
+		      
+		      if ($user.password != "")
+		    	  datas['password'] = $user.password;
+		       $http({
+		            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
+		            dataType: 'json',
+		            method: 'PUT',
+		            data: datas,
+		            headers: {
+		                "Content-Type": "application/json"
+		            }})
+		            .success(function (data, status, headers, config) {
+	        			alert("Edition done");
+	            	})
+	            	.error(function (data, status, headers, config) {
+		                alert(data);
+		            });
+		    };
+	       
     });
 
