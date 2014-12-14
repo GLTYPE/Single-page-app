@@ -201,7 +201,6 @@ gltypeApp.controller('statsController', function($scope) {
 
 gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
         $scope.webmaster = "Gilles TUAL";
-        $scope.bio = "I'm a professional food supplier with many prizes. Last one was nobel price. I'm awesome !";
         
 	      var datas = {
 	        	token:		$cookieStore.get("TOKEN")
@@ -210,19 +209,19 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 	       $http({
 	            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
 	            dataType: 'json',
-	            method: 'POST',
+	            method: 'GET',
 	            data: datas,
 	            headers: {
 	                "Content-Type": "application/json"
 	            }})
 	            .success(function (data, status, headers, config) {
-	            	$scope.firstname = "";
-	            	$scope.lastname = "";
-	            	$scope.picture = "";
-	            	$scope.email = "";
-	            	$scope.about = "";
-	            	$scope.role = "";
-	            	$scope.bio = "";
+	            	$scope.firstname = data.firstname;
+	            	$scope.lastname = data.lastname;
+	            	$scope.picture = data.picture;
+	            	$scope.email = data.email;
+	            	$scope.about = data.about;           	
+	            	$scope.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
+	            	$scope.moments = data.moments;
 	            })
             	.error(function (data, status, headers, config) {
 	                alert(data);
