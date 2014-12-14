@@ -29,10 +29,10 @@
 						<input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}" ng-model="user.email">
 
                     	<label for="about" class="text-left">about:</label>
-						<TEXTAREA name="about" class="form-control" placeholder="About" rows=2 COLS=40>{{about}}</TEXTAREA>
+						<TEXTAREA name="about" class="form-control" placeholder="About" rows=2 COLS=40 ng-model="user.about" >{{about}}</TEXTAREA>
 
                     	<label for="password" class="text-left">password:</label>
-						<input type="password" class="form-control" name="password" value="{{password}}">
+						<input type="password" class="form-control" name="password" value="{{password}}" ng-model="user.password">
 
                         <input type="submit" value="Edit"/>
                     </form>
