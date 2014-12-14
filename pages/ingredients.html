@@ -1,0 +1,41 @@
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>Ingredient</h1>
+            <hr>
+
+        </div>
+
+        <div class="col-md-12 text-center">
+
+            <h1>{{ name }}</h1>
+            <br/>
+
+        </div>
+        <div id="profil-info">
+            <div class="col-md-4 text-center">
+                <img src="{{ profilpic }}" alt="profil pic"/>
+            </div>
+            <div class="col-md-8">
+                <form>
+                    <label for="name" class="text-left">Name:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}">
+
+                    <label for="picture" class="text-left">Picture:</label>
+                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}">
+
+                    <label for="description" class="text-left">Description:</label>
+                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40>{{description}}</TEXTAREA>
+
+                    <label for="values" class="text-left">Values:</label>
+                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}">
+
+                    <input type="submit" value="Edit"/>
+                </form>
+            </div>
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
