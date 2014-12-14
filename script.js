@@ -50,7 +50,17 @@ gltypeApp.config(function($routeProvider) {
                 templateUrl : 'pages/stats.html',
                 controller  : 'statsController'
             })
+            
+            .when('/ingredient/:ingredientId', {
+                templateUrl : 'pages/ingredients.html',
+                controller  : 'ingredientController'
+            })
 
+            .when('/product/:productId', {
+                templateUrl : 'pages/products.html',
+                controller  : 'productController'
+            })
+            
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
@@ -259,3 +269,122 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 	       
     });
 
+gltypeApp.controller('ingredientController', function($scope, $http, $cookieStoren, $routeParams) {
+
+    $scope.ing= {};
+    $http({
+        url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+        dataType: 'json',
+        method: 'GET',
+        data: {
+        	token:		$cookieStore.get("TOKEN"),
+        	id:			$scope.ingredientId        	
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+        	$scope.name = data.name;
+        	$scope.ing.name= data.name;
+        	$scope.picture= data.picture;
+        	$scope.ing.picture= data.picture;
+        	$scope.description = data.description;
+        	$scope.ing.description = data.description;
+        	$scope.value = data.value;
+        	$scope.ing.value= data.value;
+        })
+    	.error(function (data, status, headers, config) {
+            alert(data);
+        });
+       	
+	
+    //Update product
+    $scope.edit_ing = function ($ing)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:	$ing.name,
+          	picture:	$ing.picture,
+          	description:		$ing.description,
+          	value:		$ing.value
+      };
+      
+       $http({
+            url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+            dataType: 'json',
+            method: 'PUT',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+	
+});
+
+gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
+    $scope.product= {};
+    $http({
+        url: BASE_API + "/products/"+$routeParams.productId,
+        dataType: 'json',
+        method: 'GET',
+        data: {
+        	token:		$cookieStore.get("TOKEN"),
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+        	$scope.name = data.name;
+        	$scope.product.name= data.name;
+
+        	$scope.name = data.brand;
+        	$scope.product.brand = data.brand;
+
+        	
+        	$scope.picture= data.picture;
+        	$scope.product.picture= data.picture;
+        	$scope.description = data.description;
+        	$scope.product.description = data.description;
+        	$scope.value = data.value;
+        	$scope.product.value= data.value;
+        })
+    	.error(function (data, status, headers, config) {
+            alert(data);
+        });
+       	
+	
+    //Update product
+    $scope.edit_product = function ($product)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:	$product.name,
+          	picture:	$product.picture,
+          	description:		$product.description,
+          	value:		$product.value,
+          	brand:		$product.brand
+      };
+      
+       $http({
+            url: BASE_API + "/products/"+$routeParams.productId,
+            dataType: 'json',
+            method: 'PUT',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+    
+});

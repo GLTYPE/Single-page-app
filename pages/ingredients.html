@@ -18,18 +18,18 @@
                 <img src="{{ profilpic }}" alt="profil pic"/>
             </div>
             <div class="col-md-8">
-                <form>
+                <form ng-submit="edit_ing(ing)">
                     <label for="name" class="text-left">Name:</label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}">
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}" ng-model="ing.name">
 
                     <label for="picture" class="text-left">Picture:</label>
-                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}">
+                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}" ng-model="ing.picture">
 
                     <label for="description" class="text-left">Description:</label>
-                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40>{{description}}</TEXTAREA>
+                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="ing.description" >{{description}}</TEXTAREA>
 
                     <label for="values" class="text-left">Values:</label>
-                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}">
+                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="ing.value" >
 
                     <input type="submit" value="Edit"/>
                 </form>
