@@ -183,9 +183,9 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 
         $scope.isConnected = function(){
             if ($cookieStore.get("email") != null)
-                return("Connected");
+                return(0);
             else
-                return("Disconnected");
+                return(1);
         }
 	
 	});
