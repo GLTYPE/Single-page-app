@@ -315,6 +315,7 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
         	token:		$cookieStore.get("TOKEN"),
           	name:	$ing.name,
           	picture:	$ing.picture,
+            description:        $ing.description,
           	values:		$ing.values
       };
       
