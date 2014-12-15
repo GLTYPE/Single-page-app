@@ -3,45 +3,30 @@
 			<div class="col-md-12 text-center">
 
 				<h1>Your profil<br><small>You look nice today ! </small></h1>
-				<!--<button type="button" class="btn btn-default" id="profil_edit_btn">
+				<button type="button" class="btn btn-default" id="profil_edit_btn">
 					<span class="fa fa-pencil-square-o"></span> Edit profil
-				</button>-->
+				</button>
 				<hr>
 
 			</div>
 
-			<div class="col-md-12 text-center">
+			<div class="col-md-12 text-center" ng-controller="userController" >
 
-				<h1>{{ firstname + " - " + lastname}} <small> {{ role }} </small></h1>
+				<h1>{{ person.firstname }} {{ user }} <small>{{ role }} </small></h1>
 				<br/>
 
 			</div>
 			<div id="profil-info">
-				<div class="col-md-4 text-center">
+				<div class="col-md-6 text-center">
 					<img src="{{ profilpic }}" alt="profil pic"/>
 				</div>
-                <div class="col-md-8">
-                    <form ng-submit="update_profil(user)">
-                    	<label for="picture" class="text-left">Picture:</label>
-						<input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}" ng-model="user.picture">
-
-                    	<label for="email" class="text-left">Email:</label>
-						<input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}" ng-model="user.email">
-
-                    	<label for="about" class="text-left">about:</label>
-						<TEXTAREA name="about" class="form-control" placeholder="About" rows=2 COLS=40 ng-model="user.about" >{{about}}</TEXTAREA>
-
-                    	<label for="password" class="text-left">password:</label>
-						<input type="password" class="form-control" name="password" value="{{password}}" ng-model="user.password">
-
-                        <input type="submit" value="Edit"/>
-                    </form>
-                    <!--<div id="bio">
-                        <h2>About me </h2>
+				<div class="col-md-6">
+					<div id="bio">
+						<h2>About me </h2>
 						<div>
-							<p >{{ about || "empty"}}</p>
+							<p editable-text="bio">{{ bio || "empty"}}</p>
 						</div>
-					</div>-->
+					</div>
 				</div>
 				<div class="col-md-12">
 

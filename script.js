@@ -180,6 +180,13 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	                alert(data);
 	            });
 	    };
+
+        $scope.isConnected = function(){
+            if ($cookieStore.get("email") != null)
+                return("Connected");
+            else
+                return("Disconnected");
+        }
 	
 	});
 
