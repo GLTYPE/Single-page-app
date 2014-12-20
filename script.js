@@ -279,7 +279,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 		    {
 		      var datas = {
 		        	token:		$cookieStore.get("TOKEN"),
-                    firstname:  $user.firstname;
+                    firstname:  $user.firstname,
 		          	picture:	$user.picture,
 		          	email:		$user.email,
 		          	about:		$user.about
