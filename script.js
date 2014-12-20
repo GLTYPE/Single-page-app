@@ -109,7 +109,8 @@ gltypeApp.run(function(editableOptions) {
 });
 
 gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
-		$scope.webmaster = "Gilles TUAL";
+		$scope.user = {};
+        $scope.webmaster = "Gilles TUAL";
         $scope.isConnected = ($cookieStore.get('TOKEN') == undefined || $cookieStore.get('TOKEN') == null) ? 1 : 0;
         $scope.locate = "index";
 
