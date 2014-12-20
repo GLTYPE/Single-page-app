@@ -421,8 +421,9 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 	    	.error(function (data, status, headers, config) {
 	            alert(data);
 	        });
-
-            $http({
+		}
+	
+    $http({
                 url: BASE_API + "/ingredients",
                 dataType: 'json',
                 method: 'GET',
@@ -438,8 +439,6 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
             .error(function (data, status, headers, config) {
                 alert(data);
             });
-		}
-	
 	
     //Update Receipe
     $scope.edit_receipe = function ($receipe)
