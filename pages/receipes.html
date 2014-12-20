@@ -8,20 +8,22 @@
 
         </div>
 
-        <div class="col-md-12 text-center">
+       <div class="col-md-12 text-center">
 
             <h1>{{ name }}</h1>
+            <button class="btn btn-primary" type="button">
+                Calories <span class="badge">{{values}}</span>
+            </button>
             <br/>
 
         </div>
-        <div class="col-md-8 col-md-offset-2 text-center">
-        
-            <img src="{{picture}}" alt="picture"/>
+            <div class="col-md-8 col-md-offset-2 text-center">
 
-            <h3>Description</h3>
-            <p>{{description}}</p>
+                <img class="img-thumbnail img-responsive" src="{{picture}}" alt="picture" width="500px" height="300px"/>
 
-            <p>{{values}}</p>
-        </div>
+                <h3>Description</h3>
+                <p>{{description}}</p>
+
+            </div>
     </div>
 </div>
