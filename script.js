@@ -61,6 +61,11 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'ingredientController'
             })
             
+            .when('/add/ingredient', {
+                templateUrl : 'pages/ingredients-add.html',
+                controller  : 'ingredientController'
+            })
+            
             .when('/product/:productId', {
                 templateUrl : 'pages/products.html',
                 controller  : 'productController'
@@ -85,7 +90,7 @@ gltypeApp.run(function(editableOptions) {
 
 gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
 		$scope.webmaster = "Gilles TUAL";
-        $scope.isConnected = ($cookieStore.get('TOKEN') == undefined) ? 0 : 1;
+        $scope.isConnected = ($cookieStore.get('TOKEN') == undefined || $cookieStore.get('TOKEN') == null) ? 1 : 0;
         $scope.user = "sirRoux";
         $scope.role = "Food Supplier";
         $scope.profilpic = "./img/tual_g.jpg";
@@ -279,48 +284,75 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 	       
     });
 
-gltypeApp.controller('ingredientController', function($scope, $http, $cookieStoren, $routeParams) {
-    $scope.ing= {};
-    if ($routeParams.ingredientId != undefined)
-	    $http({
-	        url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
-	        dataType: 'json',
-	        method: 'GET',
-	        data: {
-	        	token:		$cookieStore.get("TOKEN"),
-	        	id:			$scope.ingredientId        	
-	        },
-	        headers: {
-	            "Content-Type": "application/json"
-	        }})
-	        .success(function (data, status, headers, config) {
-	        	$scope.name = data.name;
-	        	$scope.ing.name= data.name;
-	        	$scope.picture= data.picture;
-	        	$scope.ing.picture= data.picture;
-	        	$scope.description = data.description;
-	        	$scope.ing.description = data.description;
-	        	$scope.values = data.values;
-	        	$scope.ing.values= data.values;
-	        })
-	    	.error(function (data, status, headers, config) {
-	            alert(data);
-	        });
-       	
+gltypeApp.controller('ingredientController', function($scope, $http, $cookieStore, $routeParams) {
+
+	$scope.ing = {};
+	if ($routeParams.ingredientId != undefined)
+		$http({
+			url: BASE_API + "/ingredients/" + $routeParams.ingredientId,
+			dataType: 'json',
+			method: 'GET',
+			data: {
+				token: $cookieStore.get("TOKEN")
+			},
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+		.success(function(){
+			$scope.name = data.name,
+			$scope.ing.name = data.name,
+			$scope.picture = data.picture,
+			$scope.ing.picture = data.picture,
+			$scope.description = data.description,
+			$scope.ing.description = data.description,
+			$scope.values = data.values,
+			$scope.ing.values = data.values
+		})
+		.error(function() {
+			alert(data);
+		});
 	
-    //Update ing
-    $scope.edit_ing = function ($ing)
+    //Add Ingredient
+    $scope.add_ingredient = function ($ingredient)
     {
       var datas = {
         	token:		$cookieStore.get("TOKEN"),
-          	name:	$ing.name,
-          	picture:	$ing.picture,
-            description:        $ing.description,
-          	values:		$ing.values
+          	name:			$ingredient.name,
+          	picture:		$ingredient.picture,
+          	description:	$ingredient.description,
+          	values:			$ingredient.values
       };
       
        $http({
-            url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+            url: BASE_API + "/ingredients",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Add done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    }; 
+    
+    //Update ingredient
+    $scope.edit_ingredient = function ($ingredient)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:			$ingredient.name,
+          	picture:		$ingredient.picture,
+          	description:	$ingredient.description,
+          	values:			$ingredient.values
+      };
+      
+       $http({
+            url: BASE_API + "/ingredients/"+$routeParams.productId,
             dataType: 'json',
             method: 'PUT',
             data: datas,
@@ -334,37 +366,9 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 alert(data);
             });
     };
-
-    //add ing
-    $scope.add_ing = function ($ing)
-    {
-      var datas = {
-        	token:		$cookieStore.get("TOKEN"),
-          	name:	$ing.name,
-          	picture:	$ing.picture,
-          	description:		$ing.description,
-          	values:		$ing.values
-      };
-      
-       $http({
-            url: BASE_API + "/ingredients",
-            dataType: 'json',
-            method: 'POST',
-            data: datas,
-            headers: {
-                "Content-Type": "application/json"
-            }})
-            .success(function (data, status, headers, config) {
-    			alert("Edition done");
-        	})
-        	.error(function (data, status, headers, config) {
-                alert(data);
-            });
-    };
-    
-    
+	
 });
-
+	
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
     $scope.product= {};
     if ($routeParams.productId != undefined)
