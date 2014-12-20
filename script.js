@@ -111,11 +111,23 @@ gltypeApp.run(function(editableOptions) {
 gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
 		$scope.webmaster = "Gilles TUAL";
         $scope.isConnected = ($cookieStore.get('TOKEN') == undefined || $cookieStore.get('TOKEN') == null) ? 1 : 0;
-        $scope.user = "sirRoux";
-        $scope.role = "Food Supplier";
-        $scope.profilpic = "./img/tual_g.jpg";
         $scope.locate = "index";
-        $scope.icon = "./img/iconme.png";
+
+        $http({
+            url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
+            dataType: 'json',
+            method: 'GET',
+            data: {token:       $cookieStore.get("TOKEN")},
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $scope.user.email = data.firstname;
+                $scope.user.picture = data.picture;
+            })
+            .error(function (data, status, headers, config) {
+                alert(data);
+            });
 });
 
 gltypeApp.controller('userController', function($scope, $http, $cookieStore)
@@ -279,7 +291,6 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 		    {
 		      var datas = {
 		        	token:		$cookieStore.get("TOKEN"),
-                    firstname:  $user.firstname,
 		          	picture:	$user.picture,
 		          	email:		$user.email,
 		          	about:		$user.about
