@@ -186,7 +186,6 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 		        		alert(data);
 		        	else if (status == 200)
 		        		{
-		        			alert("done");
 		        			$cookieStore.put("TOKEN", data.token);
 		        			$cookieStore.put("email", person.email);
 		        			$cookieStore.put("role", data.role);
@@ -214,7 +213,7 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	                "Content-Type": "application/json"
 	            }})
 	            .success(function (data, status, headers, config) {
-                window.location.reload();
+                    window.location.reload();
         			$cookieStore.remove("TOKEN");
             	})
             	.error(function (data, status, headers, config) {
