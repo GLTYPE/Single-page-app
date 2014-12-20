@@ -3,6 +3,7 @@
         <div class="col-md-12 text-center">
 
             <h1>Product profil<br><small>Check all these sweet infos about this product !</small></h1>
+            <button type="button" class="btn btn-default">Edit</button>
             <hr>
 
         </div>
@@ -13,25 +14,14 @@
             <br/>
 
         </div>
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <form ng-submit="edit_product(product)">
-                    <label for="name" class="text-left">Name:</label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}" ng-model="product.name">
+        <div class="col-md-8 col-md-offset-2 text-center">
+        
+            <img src="{{picture}}" alt="picture"/>
 
-                    <label for="brand" class="text-left">Brand:</label>
-                    <input type="text" class="form-control" name="brand" placeholder="Brand" value="{{brand}}" ng-model="product.brand" >
+            <h3>Description</h3>
+            <p>{{description}}</p>
 
-                    <label for="picture" class="text-left">Picture:</label>
-                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}" ng-model="product.picture">
-
-                    <label for="description" class="text-left">Description:</label>
-                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="product.description" >{{description}}</TEXTAREA>
-
-                    <label for="values" class="text-left">Values:</label>
-                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="product.values" >
-                    <br>
-                    <input type="submit" class="btn btn-default" value="Edit the product!"/>
-                </form>
-            </div>
+            <p>{{values}}</p>
+        </div>
     </div>
 </div>
