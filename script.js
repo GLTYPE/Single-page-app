@@ -190,6 +190,7 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 		        			$cookieStore.put("TOKEN", data.token);
 		        			$cookieStore.put("email", person.email);
 		        			$cookieStore.put("role", data.role);
+                            $window.location.reload();
 		        		}
             	})
             	.error(function (data, status, headers, config) {
