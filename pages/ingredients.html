@@ -10,13 +10,16 @@
 
         <div class="col-md-12 text-center">
 
-            <h1>{{ name }} <badge> {{values}} calories</h1>
+            <h1>{{ name }}</h1>
+            <button class="btn btn-primary" type="button">
+                Calories <span class="badge">{{values}}</span>
+            </button>
             <br/>
 
         </div>
             <div class="col-md-8 col-md-offset-2 text-center">
 
-                <img class="img-thumbmail img-responsive" src="{{picture}}" alt="picture" width="500px" height="300px"/>
+                <img class="img-thumbnail img-responsive" src="{{picture}}" alt="picture" width="500px" height="300px"/>
 
                 <h3>Description</h3>
                 <p>{{description}}</p>
