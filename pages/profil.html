@@ -9,14 +9,14 @@
 
 			<div class="col-md-12 text-center">
 
-				<h1 class="ng-binding">user.firstname -  <small class="ng-binding"> {{user.role}} </small></h1>
+				<h1 class="ng-binding">{{user.email}} -  <small class="ng-binding"> {{user.role}} </small></h1>
 				<br>
 
 			</div>
 			<div id="profil-info">
 				<div class="col-md-4 text-center">
 					<!-- Image de l'utilisateur -->
-					<img src="user.picture" alt="profil pic">
+					<img src="{{user.picture}}" alt="profil pic">
 				</div>
                 <div class="col-md-8 text-center">
                     <form ng-submit="update_profil(user)" class="ng-pristine ng-valid">
