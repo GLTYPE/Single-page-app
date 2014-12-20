@@ -22,6 +22,13 @@
                     <label for="description" class="text-left">Description:</label>
                     <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="product.description" >{{description}}</TEXTAREA>
 
+                    <div class="checkbox" ng-repeat-start="i in ingr">
+                        <label>
+                          <input type="checkbox"> {{i.name}}
+                        </label>
+                    </div>
+                    <div  ng-repeat-end=""></div>
+
                     <label for="values" class="text-left">Values:</label>
                     <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="product.values" >
                     <br>
