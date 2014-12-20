@@ -421,6 +421,26 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 	    	.error(function (data, status, headers, config) {
 	            alert(data);
 	        });
+
+            $http({
+                url: BASE_API + "/ingredients/",
+                dataType: 'json',
+                method: 'GET',
+                data: {
+                    token: $cookieStore.get("TOKEN")
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }})
+            .success(function (data, status, headers, config) {
+                $scope.ing.name = data.name;
+                $scope.ing.picture= data.picture;
+                $scope.ing.description = data.description;
+                $scope.ing.values= data.values;
+            })
+            .error(function (data, status, headers, config) {
+                alert(data);
+            });
 		}
 	
 	
