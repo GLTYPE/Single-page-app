@@ -66,9 +66,19 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'ingredientController'
             })
             
-            .when('/add/ingredient', {
-                templateUrl : 'pages/ingredients-add.html',
-                controller  : 'ingredientController'
+            .when('/receipe/:receipeId', {
+                templateUrl : 'pages/receipes.html',
+                controller  : 'receipeController'
+            })
+
+            .when('/add/receipe', {
+                templateUrl : 'pages/receipes-add.html',
+                controller  : 'receipeController'
+            })
+
+            .when('/edit/receipe/:receipeId', {
+                templateUrl : 'pages/receipes-edit.html',
+                controller  : 'receipeController'
             })
             
             .when('/product/:productId', {
@@ -162,9 +172,9 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 		        	else if (status == 200)
 		        		{
 		        			alert("done");
-		        			$cookieStore.put("TOKEN", data.slice(1, -1));
+		        			$cookieStore.put("TOKEN", data.token.slice(1, -1));
 		        			$cookieStore.put("email", person.email);
-		        			$cookieStore.put("password", person.password);
+		        			$cookieStore.put("role", data.role);
 		        		}
             	})
             	.error(function (data, status, headers, config) {
@@ -381,7 +391,7 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
     };
 	
 });
-	
+
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
     $scope.product= {};
     if ($routeParams.productId != undefined)
@@ -476,3 +486,4 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
     }; 
     
 });
+
