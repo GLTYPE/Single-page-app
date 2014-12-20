@@ -214,7 +214,7 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	                "Content-Type": "application/json"
 	            }})
 	            .success(function (data, status, headers, config) {
-        			alert("done");
+                $window.location.reload();
         			$cookieStore.remove("TOKEN");
             	})
             	.error(function (data, status, headers, config) {
