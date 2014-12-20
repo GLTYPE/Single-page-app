@@ -172,7 +172,7 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 		        	else if (status == 200)
 		        		{
 		        			alert("done");
-		        			$cookieStore.put("TOKEN", data.token.slice(1, -1));
+		        			$cookieStore.put("TOKEN", data.token);
 		        			$cookieStore.put("email", person.email);
 		        			$cookieStore.put("role", data.role);
 		        		}
@@ -307,6 +307,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 gltypeApp.controller('ingredientController', function($scope, $http, $cookieStore, $routeParams) {
 
 	$scope.ing = {};
+	$scope.role = $cookieStore.get("role");
 	if ($routeParams.ingredientId != undefined)
 		{
 			$scope.id = $routeParams.ingredientId;
@@ -394,10 +395,12 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
 
 gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, $routeParams) {
 	$scope.receipe = {};
+	$scope.ingr = {};
+	$scope.role = $cookieStore.get("role");
 	if ($routeParams.receipeId != undefined)
 		{
 			$scope.id = $routeParams.receipeId;
-			$scope.ing.id = $routeParams.receipeId;
+			$scope.receipe.id = $routeParams.receipeId;
 			$http({
 	            url: BASE_API + "/receipes/"+$routeParams.receipeId,
 	            dataType: 'json',
@@ -410,13 +413,13 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 	            }})
 	        .success(function (data, status, headers, config) {
 	        	$scope.name = data.name;
-	        	$scope.ing.name= data.name;
+	        	$scope.receipe.name= data.name;
 	        	$scope.picture= data.picture;
-	        	$scope.ing.picture= data.picture;
+	        	$scope.receipe.picture= data.picture;
 	        	$scope.description = data.description;
-	        	$scope.ing.description = data.description;
+	        	$scope.receipe.description = data.description;
 	        	$scope.values = data.values;
-	        	$scope.ing.values= data.values;
+	        	$scope.receipe.values= data.values;
 	        })
 	    	.error(function (data, status, headers, config) {
 	            alert(data);
@@ -424,22 +427,21 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 		}
 	
     $http({
-                url: BASE_API + "/ingredients",
-                dataType: 'json',
-                method: 'GET',
-                data: {
-                    token: $cookieStore.get("TOKEN")
-                },
-                headers: {
-                    "Content-Type": "application/json"
-                }})
-            .success(function (data, status, headers, config) {
-                console.log(data);
-                $scope.ingr = data;
-            })
-            .error(function (data, status, headers, config) {
-                alert(data);
-            });
+        url: BASE_API + "/ingredients",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+    .success(function (data, status, headers, config) {
+        $scope.ingr = data;
+    })
+    .error(function (data, status, headers, config) {
+        alert(data);
+    });
 	
     //Update Receipe
     $scope.edit_receipe = function ($receipe)
@@ -500,6 +502,7 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
     $scope.product= {};
+    $scope.role = $cookieStore.get("role");
     if ($routeParams.productId != undefined)
     	{
     	$scope.id = $routeParams.productId;
