@@ -11,24 +11,23 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <form ng-submit="add_receipe(receipe)">
                     <label for="name" class="text-left">Name:</label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}" ng-model="receipe.name">
+                    <input type="text" class="form-control" name="name" placeholder="Name" ng-model="receipe.name">
 
                     <label for="picture" class="text-left">Picture:</label>
-                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}" ng-model="receipe.picture">
+                    <input type="text" class="form-control" name="picture" placeholder="Picture" ng-model="receipe.picture">
 
                     <label for="description" class="text-left">Description:</label>
                     <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="receipe.description" >{{description}}</TEXTAREA>
 
                     <!-- add ingredients -->
-                    <!-- 
-                    <div class="col-md-8" ng-repeat-start="ing in ings">
-                        <h2>{{ing.name}}</h2>
-                        <img src="{{ing.picture}}" alt="{{ing.name}}" href="#ingredient/{{ing._id}}"/>
+                    
+                    <div class="col-md-8" ng-repeat-start="i in ingr">
+                        <h2>{{i.name}}</h2>
                     </div ng-repeat-end>
-                    -->
+                   
 
                     <label for="values" class="text-left">Values:</label>
-                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="receipe.values" >
+                    <input type="text" class="form-control" name="values" placeholder="Values" ng-model="receipe.values" >
                     <br>
                     <input type="submit" class="btn btn-default" value="Add the receipe!"/>
                 </form>
