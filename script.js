@@ -423,7 +423,7 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
 	        });
 
             $http({
-                url: BASE_API + "/ingredients/",
+                url: BASE_API + "/ingredients",
                 dataType: 'json',
                 method: 'GET',
                 data: {
