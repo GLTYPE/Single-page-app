@@ -122,8 +122,10 @@ gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $scope.user.email = data.firstname;
+                $scope.picture = data.picture;
                 $scope.user.picture = data.picture;
+                $scope.email = data.email;
+                $scope.user.email = data.email;
             })
             .error(function (data, status, headers, config) {
                 alert(data);
