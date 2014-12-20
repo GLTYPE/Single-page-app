@@ -20,18 +20,27 @@
                     <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="receipe.description" >{{description}}</TEXTAREA>
 
                     <!-- add ingredients -->
-                    
-                    <div class="col-md-8">
-                    <div class="media" ng-repeat-start="i in ingr">
-                        <a href="#" class="pull-left">
-                            <img src="{{i.picture}}" class="media-object" alt="Sample Image" height="50px">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{i.name}}</h4>
-                            <p>{{i.description}}</p>
-                        </div>
+                
+                    <div class="checkbox" ng-repeat-start="i in ingr">
+                        <label>
+                          <input type="checkbox"> {{i.name}}
+                        </label>
                     </div>
                     <div  ng-repeat-end=""></div>
+
+
+
+<!--                     <div class="col-md-8 text-center">
+                        <div class="media" ng-repeat-start="i in ingr">
+                            <a href="#" class="pull-left">
+                                <img src="{{i.picture}}" class="media-object" alt="Sample Image" height="50px" width="100px">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{i.name}}</h4>
+                                <p>{{i.description}}</p>
+                            </div>
+                        </div>
+                        <div  ng-repeat-end=""></div> -->
                 <!-- </div>
 
                     <div class="col-md-8" ng-repeat-start="i in ingr">
