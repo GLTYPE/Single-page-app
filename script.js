@@ -392,6 +392,95 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
 	
 });
 
+gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, $routeParams) {
+	$scope.receipe = {};
+	if ($routeParams.receipeId != undefined)
+		{
+			$scope.id = $routeParams.receipeId;
+			$scope.ing.id = $routeParams.receipeId;
+			$http({
+	            url: BASE_API + "/receipes/"+$routeParams.receipeId,
+	            dataType: 'json',
+	            method: 'GET',
+	            data: {
+	            	token: $cookieStore.get("TOKEN")
+	            },
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	        .success(function (data, status, headers, config) {
+	        	$scope.name = data.name;
+	        	$scope.ing.name= data.name;
+	        	$scope.picture= data.picture;
+	        	$scope.ing.picture= data.picture;
+	        	$scope.description = data.description;
+	        	$scope.ing.description = data.description;
+	        	$scope.values = data.values;
+	        	$scope.ing.values= data.values;
+	        })
+	    	.error(function (data, status, headers, config) {
+	            alert(data);
+	        });
+		}
+	
+	
+    //Update Receipe
+    $scope.edit_receipe = function ($receipe)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:			$receipe.name,
+          	picture:		$receipe.picture,
+          	description:	$receipe.description,
+          	values:			$receipe.values
+      };
+      
+       $http({
+            url: BASE_API + "/receipes/"+$routeParams.receipeId,
+            dataType: 'json',
+            method: 'PUT',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Edition done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    };
+    
+    //Add Receipe
+    $scope.add_receipe = function ($receipe)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:			$receipe.name,
+          	picture:		$receipe.picture,
+          	description:	$receipe.description,
+          	values:			$receipe.values,
+          	ing: {}
+      };
+      
+       $http({
+            url: BASE_API + "/receipes",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			alert("Add done");
+        	})
+        	.error(function (data, status, headers, config) {
+                alert(data);
+            });
+    }; 
+	
+});
+
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
     $scope.product= {};
     if ($routeParams.productId != undefined)
