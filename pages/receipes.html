@@ -3,7 +3,7 @@
         <div class="col-md-12 text-center">
 
             <h1>Receipe profil<small>Discover new delicious receipes !</small></h1>
-            <a type="button" class="btn btn-default" href="#edit/receipe/{{id}}" >Edit</a>
+            <a ng-if="role >= 3" type="button" class="btn btn-default" href="#edit/receipe/{{id}}" >Edit</a>
             <hr>
 
         </div>
