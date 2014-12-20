@@ -60,6 +60,11 @@ gltypeApp.config(function($routeProvider) {
                 templateUrl : 'pages/ingredients-add.html',
                 controller  : 'ingredientController'
             })
+
+            .when('/edit/ingredient/:ingredientId', {
+                templateUrl : 'pages/ingredients-edit.html',
+                controller  : 'ingredientController'
+            })
             
             .when('/add/ingredient', {
                 templateUrl : 'pages/ingredients-add.html',
@@ -68,6 +73,11 @@ gltypeApp.config(function($routeProvider) {
             
             .when('/product/:productId', {
                 templateUrl : 'pages/products.html',
+                controller  : 'productController'
+            })
+            
+            .when('/edit/product/:productId', {
+                templateUrl : 'pages/products-edit.html',
                 controller  : 'productController'
             })
 
@@ -288,30 +298,33 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
 
 	$scope.ing = {};
 	if ($routeParams.ingredientId != undefined)
-		$http({
-			url: BASE_API + "/ingredients/" + $routeParams.ingredientId,
-			dataType: 'json',
-			method: 'GET',
-			data: {
-				token: $cookieStore.get("TOKEN")
-			},
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
-		.success(function(){
-			$scope.name = data.name,
-			$scope.ing.name = data.name,
-			$scope.picture = data.picture,
-			$scope.ing.picture = data.picture,
-			$scope.description = data.description,
-			$scope.ing.description = data.description,
-			$scope.values = data.values,
-			$scope.ing.values = data.values
-		})
-		.error(function() {
-			alert(data);
-		});
+		{
+			$scope.id = $routeParams.ingredientId;
+			$scope.ing.id = $routeParams.ingredientId;
+			$http({
+	            url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
+	            dataType: 'json',
+	            method: 'GET',
+	            data: {
+	            	token: $cookieStore.get("TOKEN")
+	            },
+	            headers: {
+	                "Content-Type": "application/json"
+	            }})
+	        .success(function (data, status, headers, config) {
+	        	$scope.name = data.name;
+	        	$scope.ing.name= data.name;
+	        	$scope.picture= data.picture;
+	        	$scope.ing.picture= data.picture;
+	        	$scope.description = data.description;
+	        	$scope.ing.description = data.description;
+	        	$scope.values = data.values;
+	        	$scope.ing.values= data.values;
+	        })
+	    	.error(function (data, status, headers, config) {
+	            alert(data);
+	        });
+		}
 	
     //Add Ingredient
     $scope.add_ingredient = function ($ingredient)
@@ -352,7 +365,7 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
       };
       
        $http({
-            url: BASE_API + "/ingredients/"+$routeParams.productId,
+            url: BASE_API + "/ingredients/"+$routeParams.ingredientId,
             dataType: 'json',
             method: 'PUT',
             data: datas,
@@ -372,6 +385,9 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
     $scope.product= {};
     if ($routeParams.productId != undefined)
+    	{
+    	$scope.id = $routeParams.productId;
+    	$scope.product.id = $routeParams.productId;
 	    $http({
 	        url: BASE_API + "/products/"+$routeParams.productId,
 	        dataType: 'json',
@@ -400,6 +416,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
 	    	.error(function (data, status, headers, config) {
 	            alert(data);
 	        });
+    	}
        	
 	
     //Update product
@@ -451,7 +468,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			alert("Add done");
         	})
         	.error(function (data, status, headers, config) {
                 alert(data);
