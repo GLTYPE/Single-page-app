@@ -80,20 +80,20 @@
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                        <li><a href="#search"><i class="fa fa-search"></i> Search</a></li>
-                      <li class="dropdown" id="menuProfil">
-                        <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navProfil"><img src="{{ icon }}"/> Profil</a>
-                        <ul class="dropdown-menu" style="padding:17px;">
-                          <li><a role="menuitem" tabindex="-1" href="#profil">Profil page</a></li>
-                          <li><a role="menuitem" tabindex="-1" href="#">Settings </a></li>
-                          <li><a ng-controller="userController" ng-click="logout()" role="menuitem" tabindex="-1" href="">Disconnect (DEV)</a></li>
-                        </ul>
-                      </li>
-
-                      <li class="dropdown" id="menuAdd">
+                       <li class="dropdown" id="menuAdd">
                         <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navAdd"> Add</a>
                         <ul class="dropdown-menu" style="padding:17px;">
                           <li><a role="menuitem" tabindex="-1" href="#add/ingredient">Add an ingredient</a></li>
                           <li><a role="menuitem" tabindex="-1" href="#add/receipe">Add a receipe </a></li>
+                        </ul>
+                      </li>
+
+                      <li class="dropdown" id="menuProfil">
+                        <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navProfil"><img src="{{ user.picture }}"/> Profil</a>
+                        <ul class="dropdown-menu" style="padding:17px;">
+                          <li><a role="menuitem" tabindex="-1" href="#profil">Profil page</a></li>
+                          <li><a role="menuitem" tabindex="-1" href="#">Settings </a></li>
+                          <li><a ng-controller="userController" ng-click="logout()" role="menuitem" tabindex="-1" href="">Disconnect (DEV)</a></li>
                         </ul>
                       </li>
                     </ul>
