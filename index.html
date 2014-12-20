@@ -84,6 +84,14 @@
                           <li><a ng-controller="userController" ng-click="logout()" role="menuitem" tabindex="-1" href="">Disconnect (DEV)</a></li>
                         </ul>
                       </li>
+
+                      <li class="dropdown" id="menuAdd">
+                        <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navAdd"><img src="{{ icon }}"/> Add</a>
+                        <ul class="dropdown-menu" style="padding:17px;">
+                          <li><a role="menuitem" tabindex="-1" href="#add/ingredient">Add an ingredient</a></li>
+                          <li><a role="menuitem" tabindex="-1" href="#add/receipe">Add a receipe </a></li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
               </div>
