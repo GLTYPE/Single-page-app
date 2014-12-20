@@ -20,10 +20,12 @@
                     <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="receipe.description" >{{description}}</TEXTAREA>
 
                     <!-- add ingredients -->
+                    <!-- 
                     <div class="col-md-8" ng-repeat-start="ing in ings">
                         <h2>{{ing.name}}</h2>
                         <img src="{{ing.picture}}" alt="{{ing.name}}" href="#ingredient/{{ing._id}}"/>
                     </div ng-repeat-end>
+                    -->
 
                     <label for="values" class="text-left">Values:</label>
                     <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="receipe.values" >
