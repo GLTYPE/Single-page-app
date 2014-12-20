@@ -1,0 +1,34 @@
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>Ingredient edit<br><small>Check all these sweet infos about this ingredient !</small></h1>
+            <hr>
+
+        </div>
+
+        <div class="col-md-12 text-center">
+
+            <h1>{{ name }}</h1>
+            <br/>
+
+        </div>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <form ng-submit="edit_ing(ing)">
+                    <label for="name" class="text-left">Name:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}" ng-model="ing.name">
+
+                    <label for="picture" class="text-left">Picture:</label>
+                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}" ng-model="ing.picture">
+
+                    <label for="description" class="text-left">Description:</label>
+                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="ing.description" >{{description}}</TEXTAREA>
+
+                    <label for="values" class="text-left">Values:</label>
+                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}" ng-model="ing.values" >
+                    <br>
+                    <input type="submit" class="btn btn-default" value="Edit the ingredient!"/>
+                </form>
+            </div>
+    </div>
+</div>
