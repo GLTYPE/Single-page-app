@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-md-12 text-center">
 
-            <h1>Receipe</h1>
+            <h1>Receipe profil<small>Discover new delicious receipes !</small></h1>
+            <button type="button" class="btn btn-default">Edit</button>
             <hr>
 
         </div>
@@ -13,29 +14,14 @@
             <br/>
 
         </div>
-        <div id="profil-info">
-            <div class="col-md-4 text-center">
-                <img src="{{ profilpic }}" alt="profil pic"/>
-            </div>
-            <div class="col-md-8">
-                <form>
-                    <label for="name" class="text-left">Name:</label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}">
+        <div class="col-md-8 col-md-offset-2 text-center">
+        
+            <img src="{{picture}}" alt="picture"/>
 
-                    <label for="picture" class="text-left">Picture:</label>
-                    <input type="text" class="form-control" name="picture" placeholder="Picture" value="{{picture}}">
+            <h3>Description</h3>
+            <p>{{description}}</p>
 
-                    <label for="description" class="text-left">Description:</label>
-                    <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40>{{description}}</TEXTAREA>
-
-                    <label for="values" class="text-left">Values:</label>
-                    <input type="text" class="form-control" name="values" placeholder="Values" value="{{values}}">
-
-                    <input type="submit" value="Edit"/>
-                </form>
-            </div>
-            <div class="col-md-12">
-            </div>
+            <p>{{values}}</p>
         </div>
     </div>
 </div>
