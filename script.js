@@ -433,10 +433,10 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                     "Content-Type": "application/json"
                 }})
             .success(function (data, status, headers, config) {
-                $scope.ing.name = data.name;
-                $scope.ing.picture= data.picture;
-                $scope.ing.description = data.description;
-                $scope.ing.values= data.values;
+                $scope.ingr.name = data.name;
+                $scope.ingr.picture= data.picture;
+                $scope.ingr.description = data.description;
+                $scope.ingr.values= data.values;
             })
             .error(function (data, status, headers, config) {
                 alert(data);
