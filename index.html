@@ -21,9 +21,13 @@
       <script src="script.js"></script>
       <script src="./js/xeditable.js"></script>
       <script src="./js/angular-cookies.min.js"></script>
+      <script src="./js/facebook.js"></script>
     </head>
     <body ng-controller="mainController">
 
+<div ng-app="myFacebookApp">
+    <facebook app-id="1403118356603998"></facebook>
+</div>
 
             <div class="navbar navbar-inverse">
 	            <div class="container" ng-if="isConnected == 1">
