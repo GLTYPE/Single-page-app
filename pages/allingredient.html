@@ -1,18 +1,29 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1>Ingredients</h1>
+            <h1>List of ingredient<small>The ultimate list of Nourriture's ingredients !</small></h1>
             <hr>
         </div>
-        <div class="col-md-12 text-center">
-        </div>
-        <div id="profil-info">
+        
+        <div class="col-sm-6 col-md-4" ng-repeat-start="i in ingr">
+            <div class="thumbnail">
+              <img data-src="{{i.picture}}" alt="{{i.name}}\'s picture" width="300px" height="300px">
+              <div class="caption">
+                <h3>{{i.name}}</h3>
+                <p>Calories : {{i.values}}</p>
+                <p>{{i.description}}</p>
+                <p><a href="#" class="btn btn-primary" role="button">See ingredient page</a>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- <div class="col-md-8 col-md-offset-2 text-center">
+
             <div class="col-md-8" ng-repeat-start="ing in ings">
                 <h2>{{ing.name}}</h2>
                 <img src="{{ing.picture}}" alt="{{ing.name}}" href="#product/{{ing._id}}"/>
             </div ng-repeat-end>
-            <div class="col-md-12">
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
