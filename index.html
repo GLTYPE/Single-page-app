@@ -115,6 +115,15 @@
                           <li><a ng-controller="userController" ng-click="logout()" role="menuitem" tabindex="-1" href="">Disconnect</a></li>
                         </ul>
                       </li>
+
+                      <li class="dropdown" id="menuList">
+                        <a class="dropdown-toggle" href="{{ locate }}" data-toggle="dropdown" id="navList"><i class="fa fa-plus-square-o"></i>Lists </a>
+                        <ul class="dropdown-menu" style="padding:17px;">
+                          <li><a role="menuitem" tabindex="-1" href="#all/ingredient">List of ingredients</a></li>
+                          <li><a role="menuitem" tabindex="-1" href="#all/product">List of products</a></li>
+                          <li><a role="menuitem" tabindex="-1" href="#all/receipe">List of receipes</a></li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
               </div>
