@@ -2,7 +2,7 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 
-				<h1>Search<br><small>Looking for delicious food ? Appetizing recipes ? Delightful people ? </small></h1>
+				<h1>Search<br><small>Looking for delicious food ? Appetizing recipes ? </small></h1>
 				<hr>
 
 				<form role="form">
@@ -10,33 +10,33 @@
 					    <label for="search">Search</label>
 					    <input type="text" class="form-control" id="search" placeholder="Search">
 					  </div>
+					   <div class="form-group">
+					    <label for="search">Minimum Calories</label>
+					    <input type="text" class="form-control" id="minCal" placeholder="0">
+					  </div>
+					  <div class="form-group">
+					    <label for="search">Maximum Calories</label>
+					    <input type="text" class="form-control" id="maxCal" placeholder="0">
+					  </div>
+
 					  
 					  <button type="submit" class="btn btn-default">Search</button>
 				</form>
 				<br/>
 			</div>
 
-			<div class="col-md-12 searchResult" >
-				<div class="col-md-4 ">
-					<img src="{{ foodDummy[0].img }}" alt="food photo">
-				</div>
-
-				<div class="col-md-6">
-					<h2>{{ foodDummy[0].name }} <small>{{ foodDummy[0].type }}</small></h2>
-					<p>{{ foodDummy[0].desc }}</p>
-				</div>
-			</div>
-
-			<div class="col-md-12 searchResult" >
-				<div class="col-md-4 ">
-					<img src="{{ foodDummy[1].img }}" alt="food photo">
-				</div>
-
-				<div class="col-md-6">
-					<h2>{{ foodDummy[1].name }} <small>{{ foodDummy[1].type }}</small></h2>
-					<p>{{ foodDummy[1].desc }}</p>
-				</div>
-			</div>
+			<div class="col-sm-6 col-md-4" ng-repeat-start="s in search">
+            <div class="thumbnail">
+              <img data-src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <div class="caption">
+                <h3>{{s.name}}<small> {{s.brand}}</small></h3>
+                <p>Calories : {{s.values}}</p>
+                <p>{{s.description}}</p>
+                <p><a href="#product/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
+              </div>
+            </div>
+          </div>
+          <div  ng-repeat-end=""></div>
 
 		</div>
 </div>
