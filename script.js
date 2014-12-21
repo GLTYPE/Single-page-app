@@ -316,7 +316,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 	        			$('#profil-success').show();
 	            	})
 	            	.error(function (data, status, headers, config) {
-		                alert(data);
+		                $('#profil-error').show();
 		            });
 		    };
 	       
@@ -402,10 +402,10 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#ingr-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#ingr-error').show();
             });
     };
 	
@@ -481,10 +481,10 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#receipe-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#receipe-error').show();
             });
     };
     
@@ -593,10 +593,10 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#prod-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#prod-error').show();
             });
     };
     
