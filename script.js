@@ -66,6 +66,11 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'ingredientController'
             })
             
+            .when('/all/ingredient', {
+                templateUrl : 'pages/allIngredient.html',
+                controller  : 'ingredientController'
+            })            
+            
             .when('/receipe/:receipeId', {
                 templateUrl : 'pages/receipes.html',
                 controller  : 'receipeController'
@@ -78,6 +83,11 @@ gltypeApp.config(function($routeProvider) {
 
             .when('/edit/receipe/:receipeId', {
                 templateUrl : 'pages/receipes-edit.html',
+                controller  : 'receipeController'
+            })
+            
+            .when('/all/receipe', {
+                templateUrl : 'pages/allReceipe.html',
                 controller  : 'receipeController'
             })
             
@@ -95,6 +105,11 @@ gltypeApp.config(function($routeProvider) {
                 templateUrl : 'pages/products-add.html',
                 controller  : 'productController'
             })
+            
+            .when('/all/product', {
+                templateUrl : 'pages/allProduct.html',
+                controller  : 'productController'
+            })            
             
             // route for the profil page
             .when('/profil', {
