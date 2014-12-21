@@ -162,7 +162,7 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	                "Content-Type": "application/json"
 	            }})
 	            .success(function (data, status, headers, config) {
-	                   $("#registerModalSucess").modal({
+	                   $("#registerModalSuccess").modal({
                             keyboard: true
                        })
 	            }).error(function (data, status, headers, config) {
@@ -315,10 +315,10 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 		                "Content-Type": "application/json"
 		            }})
 		            .success(function (data, status, headers, config) {
-	        			alert("Edition done");
+	        			$('#profil-success').show();
 	            	})
 	            	.error(function (data, status, headers, config) {
-		                alert(data);
+		                $('#profil-error').show();
 		            });
 		    };
 	       
@@ -377,10 +377,12 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#ingrAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#ingradd-error').show();
             });
     }; 
     
@@ -404,10 +406,10 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#ingr-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#ingr-error').show();
             });
     };
 	
@@ -483,10 +485,10 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#receipe-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#receipe-error').show();
             });
     };
     
@@ -511,10 +513,12 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#recAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#recadd-error').show();
             });
     }; 
 	
@@ -595,10 +599,10 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Edition done");
+    			$('#prod-success').show();
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#prod-error').show();
             });
     };
     
@@ -623,10 +627,12 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#prodAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#prodadd-error').show();
             });
     }; 
     
