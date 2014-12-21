@@ -26,31 +26,31 @@
 			</div>
 
 			<div class="col-sm-12">
-				<h2>Ingredient</h2>
+				<h2>Ingredients</h2>
 			</div>
-			<div ng-if="ingredients" class="col-sm-6 col-md-4" ng-repeat-start="s in ingredients">
+			<div class="col-sm-6 col-md-4" ng-repeat-start="i in ingredients">
             <div class="thumbnail">
-              <img src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <img data-src="{{i.picture}}" alt="{{i.name}}\'s picture" width="300px" height="300px">
               <div class="caption">
-                <h3>{{s.name}}<small> {{s.brand}}</small></h3>
-                <p>Calories : {{s.values}}</p>
-                <p>{{s.description}}</p>
+                <h3>{{i.name}}</h3>
+                <p>Calories : {{i.values}}</p>
+                <p>{{i.description}}</p>
                 <p><a href="#ingredient/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
               </div>
             </div>
           </div>
           <div  ng-repeat-end=""></div>
-          
-			<div class="col-sm-12">
+
+          <div class="col-sm-12">
 				<h2>Products</h2>
 			</div>
-          <div ng-if="procucts.length" class="col-sm-6 col-md-4" ng-repeat-start="s in products">
+			<div class="col-sm-6 col-md-4" ng-repeat-start="p in products">
             <div class="thumbnail">
-              <img src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <img data-src="{{p.picture}}" alt="{{p.name}}\'s picture" width="300px" height="300px">
               <div class="caption">
-                <h3>{{s.name}}</h3>
-                <p>Calories : {{s.values}}</p>
-                <p>{{s.description}}</p>
+                <h3>{{p.name}}<small> {{p.brand}}</small></h3>
+                <p>Calories : {{p.values}}</p>
+                <p>{{p.description}}</p>
                 <p><a href="#product/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
               </div>
             </div>
@@ -60,9 +60,9 @@
 			<div class="col-sm-12">
 				<h2>Receipes</h2>
 			</div>
-          <div ng-if="receipes.length" class="col-sm-6 col-md-4" ng-repeat-start="s in receipes">
+			<div class="col-sm-6 col-md-4" ng-repeat-start="r in receipes">
             <div class="thumbnail">
-              <img src="{{r.picture}}" alt="{{r.name}}\'s picture" width="300px" height="300px">
+              <img data-src="{{r.picture}}" alt="{{r.name}}\'s picture" width="300px" height="300px">
               <div class="caption">
                 <h3>{{r.name}}</h3>
                 <p>Calories : {{r.values}}</p>
