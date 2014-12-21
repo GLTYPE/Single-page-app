@@ -264,18 +264,13 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
 	//search
     $scope.search_data = function ($form_search)
     {
-      var datas = {
-        	token:		$cookieStore.get("TOKEN"),
-          	name:		$form_search.name,
-          	minCal:		$form_search.minCal,
-          	maxCal:		$form_search.maxCal
-      };
-      
        $http({
-            url: BASE_API + "/search/ingredients",
+            url: BASE_API + "/search/ingredients/"
+            +$form_search.name+"/"
+            +$form_search.minCal +"/"
+            +$form_search.maxCal +"/0/10",
             dataType: 'json',
             method: 'GET',
-            data: datas,
             headers: {
                 "Content-Type": "application/json"
             }})
@@ -287,25 +282,12 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
             });
        
        $http({
-           url: BASE_API + "/search/receipes",
+           url: BASE_API + "/search/products/"
+           +$form_search.name+"/"
+           +$form_search.minCal +"/"
+           +$form_search.maxCal +"/0/10",
            dataType: 'json',
            method: 'GET',
-           data: datas,
-           headers: {
-               "Content-Type": "application/json"
-           }})
-           .success(function (data, status, headers, config) {
-   			$scope.receipes = data;
-       	})
-       	.error(function (data, status, headers, config) {
-       		alert("error");
-           });
-       
-       $http({
-           url: BASE_API + "/search/products",
-           dataType: 'json',
-           method: 'GET',
-           data: datas,
            headers: {
                "Content-Type": "application/json"
            }})
@@ -315,8 +297,27 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
        	.error(function (data, status, headers, config) {
        		alert("error");
            });
-    };
-	
+
+       
+       $http({
+           url: BASE_API + "/search/receipes/"
+           +$form_search.name+"/"
+           +$form_search.minCal +"/"
+           +$form_search.maxCal +"/0/10",
+           dataType: 'json',
+           method: 'GET',
+           headers: {
+               "Content-Type": "application/json"
+           }})
+           .success(function (data, status, headers, config) {
+   			$scope.receipes = data;
+       	})
+       	.error(function (data, status, headers, config) {
+       		alert("error");
+           });
+
+       
+    }
 	
 	});
 

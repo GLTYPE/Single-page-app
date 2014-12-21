@@ -25,14 +25,46 @@
 				<br/>
 			</div>
 
-			<div class="col-sm-6 col-md-4" ng-repeat-start="s in search">
+			<h1>Ingredients</h1>
+			<div ng-show="!ingredients.length">No Ingredients</div>
+			<div ng-if="ingredients" class="col-sm-6 col-md-4" ng-repeat-start="s in ingredients">
             <div class="thumbnail">
-              <img data-src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <img src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
               <div class="caption">
                 <h3>{{s.name}}<small> {{s.brand}}</small></h3>
                 <p>Calories : {{s.values}}</p>
                 <p>{{s.description}}</p>
+                <p><a href="#ingredient/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
+              </div>
+            </div>
+          </div>
+          <div  ng-repeat-end=""></div>
+          
+			<h1>Products</h1>
+          <div ng-show="!products.length">No Products</div>
+          <div ng-if="procucts.length" class="col-sm-6 col-md-4" ng-repeat-start="s in products">
+            <div class="thumbnail">
+              <img src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <div class="caption">
+                <h3>{{s.name}}</h3>
+                <p>Calories : {{s.values}}</p>
+                <p>{{s.description}}</p>
                 <p><a href="#product/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
+              </div>
+            </div>
+          </div>
+          <div  ng-repeat-end=""></div>
+         
+			<h1>Receipes</h1>
+          <div ng-show="!receipes.length">No receipes</div>          
+          <div ng-if="receipes.length" class="col-sm-6 col-md-4" ng-repeat-start="s in receipes">
+            <div class="thumbnail">
+              <img src="{{s.picture}}" alt="{{s.name}}\'s picture" width="300px" height="300px">
+              <div class="caption">
+                <h3>{{s.name}}</h3>
+                <p>Calories : {{s.values}}</p>
+                <p>{{s.description}}</p>
+                <p><a href="#receipe/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
               </div>
             </div>
           </div>
