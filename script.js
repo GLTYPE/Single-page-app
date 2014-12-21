@@ -159,7 +159,9 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	                "Content-Type": "application/json"
 	            }})
 	            .success(function (data, status, headers, config) {
-	                alert(data);
+	                   $("#registerModalSucess").modal({
+                            keyboard: true
+                       })
 	            }).error(function (data, status, headers, config) {
 	                alert(data);
 	            });
