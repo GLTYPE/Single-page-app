@@ -653,7 +653,22 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
 
 
 gltypeApp.controller('allReceipeController', function($scope, $http, $cookieStore, $routeParams) {
-
+    $http({
+        url: BASE_API + "/receipes",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+    .success(function (data, status, headers, config) {
+        $scope.rec = data;
+    })
+    .error(function (data, status, headers, config) {
+        alert(data);
+    });
 });
 
 gltypeApp.controller('allIngredientController', function($scope, $http, $cookieStore, $routeParams) {
@@ -676,5 +691,20 @@ gltypeApp.controller('allIngredientController', function($scope, $http, $cookieS
 });
 
 gltypeApp.controller('allProductController', function($scope, $http, $cookieStore, $routeParams) {
-
+    $http({
+        url: BASE_API + "/products",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+    .success(function (data, status, headers, config) {
+        $scope.prod = data;
+    })
+    .error(function (data, status, headers, config) {
+        alert(data);
+    });
 });

@@ -1,0 +1,23 @@
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>List of receipe<small>The ultimate list of Nourriture's receipes !</small></h1>
+            <hr>
+        </div>
+        
+        <div class="col-sm-6 col-md-4" ng-repeat-start="r in rec">
+            <div class="thumbnail">
+              <img data-src="{{r.picture}}" alt="{{r.name}}\'s picture" width="300px" height="300px">
+              <div class="caption">
+                <h3>{{r.name}}</h3>
+                <p>Calories : {{r.values}}</p>
+                <p>{{r.description}}</p>
+                <p><a href="#receipe/{{r._id}}" class="btn btn-primary" role="button">See receipe page</a>
+              </div>
+            </div>
+          </div>
+          <div  ng-repeat-end=""></div>
+
+
+    </div>
+</div>
