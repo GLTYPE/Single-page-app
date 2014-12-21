@@ -313,7 +313,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 		                "Content-Type": "application/json"
 		            }})
 		            .success(function (data, status, headers, config) {
-	        			alert("Edition done");
+	        			$('#profil-success').show();
 	            	})
 	            	.error(function (data, status, headers, config) {
 		                alert(data);
