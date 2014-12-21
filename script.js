@@ -114,6 +114,7 @@ gltypeApp.controller('mainController', function($scope, $http, $cookieStore) {
         $scope.isConnected = ($cookieStore.get('TOKEN') == undefined || $cookieStore.get('TOKEN') == null) ? 1 : 0;
         $scope.locate = "index";
 
+        if ($cookieStore.get("TOKEN") != undefined)
         $http({
             url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
             dataType: 'json',
