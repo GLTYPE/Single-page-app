@@ -375,10 +375,12 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#ingrAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#ingradd-error').show();
             });
     }; 
     
@@ -509,10 +511,12 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#recAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#recadd-error').show();
             });
     }; 
 	
@@ -621,10 +625,12 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-    			alert("Add done");
+    			$("#prodAddModalSuccess").modal({
+                            keyboard: true
+                       })
         	})
         	.error(function (data, status, headers, config) {
-                alert(data);
+                $('#prodadd-error').show();
             });
     }; 
     
