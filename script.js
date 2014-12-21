@@ -96,6 +96,8 @@ gltypeApp.config(function($routeProvider) {
                 controller  : 'productController'
             })
             
+            .when('all/product')
+            
             // route for the profil page
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
