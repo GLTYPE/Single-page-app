@@ -657,7 +657,22 @@ gltypeApp.controller('allReceipeController', function($scope, $http, $cookieStor
 });
 
 gltypeApp.controller('allIngredientController', function($scope, $http, $cookieStore, $routeParams) {
-
+    $http({
+        url: BASE_API + "/ingredients",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+    .success(function (data, status, headers, config) {
+        $scope.ingr = data;
+    })
+    .error(function (data, status, headers, config) {
+        alert(data);
+    });
 });
 
 gltypeApp.controller('allProductController', function($scope, $http, $cookieStore, $routeParams) {
