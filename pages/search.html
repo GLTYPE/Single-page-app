@@ -5,18 +5,18 @@
 				<h1>Search<br><small>Looking for delicious food ? Appetizing recipes ? </small></h1>
 				<hr>
 
-				<form role="form">
+				<form role="form" ng-submit="search_data(form_search)">
 					  <div class="form-group">
 					    <label for="search">Search</label>
-					    <input type="text" class="form-control" id="search" placeholder="Search">
+					    <input type="text" class="form-control" id="search" ng-model="form_search.name" placeholder="Search">
 					  </div>
 					   <div class="form-group">
 					    <label for="search">Minimum Calories</label>
-					    <input type="text" class="form-control" id="minCal" placeholder="0">
+					    <input type="text" class="form-control" id="minCal" ng-model="form_search.minCal" placeholder="0">
 					  </div>
 					  <div class="form-group">
 					    <label for="search">Maximum Calories</label>
-					    <input type="text" class="form-control" id="maxCal" placeholder="0">
+					    <input type="text" class="form-control" id="maxCal" ng-model="form_search.maxCal" placeholder="0">
 					  </div>
 
 					  

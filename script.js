@@ -255,10 +255,70 @@ gltypeApp.controller('contactController', function($scope) {
    		$scope.webmaster = "Gilles TUAL";
     });
 
-gltypeApp.controller('searchController', function($scope) {
-        $scope.foodDummy = [{type:'Recipe', name:'Phare Breton', img: './img/food.jpg', desc: 'A good dessert !'},
-        {type:'Food', name:'Apple', img: './img/apple.jpg', desc: 'The best fruit ! Ask to newton !'}];
-    });
+gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
+	$scope.form_search = {};
+	$scope.receipes = {};
+	$scope.products = {};
+	$scope.ingredients = {};
+
+	//search
+    $scope.search_data = function ($form_search)
+    {
+      var datas = {
+        	token:		$cookieStore.get("TOKEN"),
+          	name:		$form_search.name,
+          	minCal:		$form_search.minCal,
+          	maxCal:		$form_search.maxCal
+      };
+      
+       $http({
+            url: BASE_API + "/search/ingredients",
+            dataType: 'json',
+            method: 'GET',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+    			$scope.ingredients = data;
+        	})
+        	.error(function (data, status, headers, config) {
+        		alert("error");
+            });
+       
+       $http({
+           url: BASE_API + "/search/receipes",
+           dataType: 'json',
+           method: 'GET',
+           data: datas,
+           headers: {
+               "Content-Type": "application/json"
+           }})
+           .success(function (data, status, headers, config) {
+   			$scope.receipes = data;
+       	})
+       	.error(function (data, status, headers, config) {
+       		alert("error");
+           });
+       
+       $http({
+           url: BASE_API + "/search/products",
+           dataType: 'json',
+           method: 'GET',
+           data: datas,
+           headers: {
+               "Content-Type": "application/json"
+           }})
+           .success(function (data, status, headers, config) {
+   			$scope.products = data;
+       	})
+       	.error(function (data, status, headers, config) {
+       		alert("error");
+           });
+    };
+	
+	
+	});
 
 gltypeApp.controller('foodController', function($scope) {
         $scope.foodDummy = [{type:'Recipe', name:'Phare Breton', img: './img/food.jpg', desc: 'A good dessert !'},
