@@ -43,6 +43,38 @@
 					</div>
 				</div>
 
+                <div class="col-md-12 text-center">
+                    <h1 class="ng-binding">{{user.email}}'s moments</h1>
+                    <br>
+                </div>
+
+
+                <div class="col-md-offset-2 col-md-8 black_bg" ng-repeat-start="m in moments">
+                    <div class="media">
+                        <a class="media-left" href="#">
+                            <img src="https://cdn0.iconfinder.com/data/icons/iconshock_guys/512/matthew.png" alt="..." width="64px" height="64px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{m.owner}}</h4>
+                            <p>{{m.description}}</p>
+                            <img src="{{m.img}}" alt="..." height="128px">
+                        </div>
+                        <div class="col-md-8" ng-repeat-start="c in comments">
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" alt="..." width="64px" height="64px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{c.owner}}</h4>
+                                    <p>{{c.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div  ng-repeat-end=""></div>
+                        </div>
+                    </div>
+                <div  ng-repeat-end=""></div>
+
 			</div>
 		</div>
 </div>
