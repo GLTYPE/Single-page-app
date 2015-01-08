@@ -115,6 +115,11 @@ gltypeApp.config(function($routeProvider) {
         .when('/profil', {
             templateUrl : 'pages/profil.html',
             controller  : 'profilController'
+        })
+
+        .when('/profil/:id', {
+            templateUrl : 'pages/userprofil.html',
+            controller  : 'userprofilController'
         });
 
 });
@@ -260,63 +265,80 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
     $scope.receipes = {};
     $scope.products = {};
     $scope.ingredients = {};
+    $scope.users = {};
 
     //search
     $scope.search_data = function ($form_search)
     {
-        $http({
-            url: BASE_API + "/search/ingredients/"
-            +$form_search.name+"/"
-            +$form_search.minCal +"/"
-            +$form_search.maxCal +"/0/10",
-            dataType: 'json',
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }})
-            .success(function (data, status, headers, config) {
-                $scope.ingredients = data;
+        if ($form_search.choose == "user") {
+            $http({
+                url: BASE_API + "/users/name/" + $form_search.name,
+                dataType: 'json',
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
             })
-            .error(function (data, status, headers, config) {
-                alert("error");
-            });
-
-        $http({
-            url: BASE_API + "/search/products/"
-            +$form_search.name+"/"
-            +$form_search.minCal +"/"
-            +$form_search.maxCal +"/0/10",
-            dataType: 'json',
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }})
-            .success(function (data, status, headers, config) {
-                $scope.products = data;
+                .success(function (data, status, headers, config) {
+                    $scope.users = data;
+                })
+                .error(function (data, status, headers, config) {
+                    alert("error");
+                });
+        }
+        else {
+            $http({
+                url: BASE_API + "/search/ingredients/"
+                + $form_search.name + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
+                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
+                dataType: 'json',
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
             })
-            .error(function (data, status, headers, config) {
-                alert("error");
-            });
-
-
-        $http({
-            url: BASE_API + "/search/receipes/"
-            +$form_search.name+"/"
-            +$form_search.minCal +"/"
-            +$form_search.maxCal +"/0/10",
-            dataType: 'json',
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }})
-            .success(function (data, status, headers, config) {
-                $scope.receipes = data;
+                .success(function (data, status, headers, config) {
+                    $scope.ingredients = data;
+                })
+                .error(function (data, status, headers, config) {
+                    alert("error");
+                });
+            $http({
+                url: BASE_API + "/search/products/"
+                + $form_search.name + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
+                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
+                dataType: 'json',
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
             })
-            .error(function (data, status, headers, config) {
-                alert("error");
-            });
-
-
+                .success(function (data, status, headers, config) {
+                    $scope.products = data;
+                })
+                .error(function (data, status, headers, config) {
+                    alert("error");
+                });
+            $http({
+                url: BASE_API + "/search/receipes/"
+                + $form_search.name + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
+                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
+                dataType: 'json',
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .success(function (data, status, headers, config) {
+                    $scope.receipes = data;
+                })
+                .error(function (data, status, headers, config) {
+                    alert("error");
+                });
+        }
     }
 
 });
@@ -341,9 +363,7 @@ gltypeApp.controller('statsController', function($scope) {
 gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
-    $scope.comments = {};
     $scope.moments = {};
-    $id;
 
     $http({
         url: BASE_API + "/users/token/"+$cookieStore.get("TOKEN"),
@@ -354,47 +374,28 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope.firstname = data.firstname;
             $scope.user.firstname = data.firstname;
             $scope.user.email = data.firstname;
-            $scope.lastname = data.lastname;
             $scope.user.lastname = data.lastname;
-            $scope.picture = data.picture;
             $scope.user.picture = data.picture;
-            $scope.email = data.email;
             $scope.user.email = data.email;
-            $scope.about = data.about;
             $scope.user.about = data.about;
-            $scope.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
+            $scope.user.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
             $http({
-                url: BASE_API + "/moments/owner/," + data._id,
+                url: BASE_API + "/moments/target/" + data._id,
                 dataType: 'json',
                 method: 'GET',
-                data: {token:		$cookieStore.get("TOKEN")},
+                data: {token: $cookieStore.get("TOKEN")},
                 headers: {
                     "Content-Type": "application/json"
                 }})
                 .success(function (data, status, headers, config) {
                     $scope.moments = data;
-                    $http({
-                        url: BASE_API + "/moments/owner/," + data._id,
-                        dataType: 'json',
-                        method: 'GET',
-                        data: {token:		$cookieStore.get("TOKEN")},
-                        headers: {
-                            "Content-Type": "application/json"
-                        }})
-                        .success(function (data, status, headers, config) {
-                            $scope.comments = data;
-
-                        })
-                        .error(function (data, status, headers, config) {
-                            alert(data);
-                        });
                 })
                 .error(function (data, status, headers, config) {
                     alert(data);
                 });
+
         })
         .error(function (data, status, headers, config) {
             alert(data);
@@ -428,6 +429,50 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
             });
     };
 
+});
+
+gltypeApp.controller('userprofilController', function($scope, $http, $cookieStore, $routeParams) {
+    $scope.webmaster = "Gilles TUAL";
+    $scope.user = {};
+    $scope.moments = {};
+
+    $http({
+        url: BASE_API + "/users/" + $routeParams.id,
+        dataType: 'json',
+        method: 'GET',
+        data: {token: $cookieStore.get("TOKEN")},
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .success(function (data, status, headers, config) {
+            $scope.user.firstname = data.firstname;
+            $scope.user.email = data.firstname;
+            $scope.user.lastname = data.lastname;
+            $scope.user.picture = data.picture;
+            $scope.user.email = data.email;
+            $scope.user.about = data.about;
+            $scope.user.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
+            $http({
+                url: BASE_API + "/moments/target/" + data._id,
+                dataType: 'json',
+                method: 'GET',
+                data: {token: $cookieStore.get("TOKEN")},
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .success(function (data, status, headers, config) {
+                    $scope.moments = data;
+                })
+                .error(function (data, status, headers, config) {
+                    alert(data);
+                });
+
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 });
 
 gltypeApp.controller('ingredientController', function($scope, $http, $cookieStore, $routeParams) {
@@ -801,3 +846,16 @@ gltypeApp.controller('allProductController', function($scope, $http, $cookieStor
             alert(data);
         });
 });
+
+/*[
+ [
+ {"moment":{"__v":0,"_id":"54ae45e5f8104856099fe1b8","date":"2015-01-08T00:00:00.000Z","description":"One of my moments edited 2 :)","name":"My Moment","owner_id":"54ad09006938b2b53d2b3f6b","target_id":"54ad09006938b2b53d2b3f6b","comments":[]},
+ "comments":null,
+ "user":{"_id":"54ad09006938b2b53d2b3f6b","about":"BJUTU student","email":"medard.etudiant@gmail.com","firstname":"Pierre","lastname":"Medard","picture":"http://www.tropclasse.com/images/2013/January/8/50ebe1d4910bb.jpg","role":1,"photos":[],"movies":[],"moments":[]}}
+ ],
+ [
+ {"moment":{"name":"Another one !","description":"The other one description !","owner_id":"54ad09006938b2b53d2b3f6b","target_id":"54ad09006938b2b53d2b3f6b","date":"2015-07-31T16:00:00.000Z","_id":"54aedaff2933d37a567a764b","__v":0,"comments":[]},
+ "comments":null,
+ "user":{"_id":"54ad09006938b2b53d2b3f6b","about":"BJUTU student","email":"medard.etudiant@gmail.com","firstname":"Pierre","lastname":"Medard","picture":"http://www.tropclasse.com/images/2013/January/8/50ebe1d4910bb.jpg","role":1,"photos":[],"movies":[],"moments":[]}}
+ ]
+ ]*/
