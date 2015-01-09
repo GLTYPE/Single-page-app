@@ -849,7 +849,22 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
+            $scope..owner_id= data.owner_id;
             $scope.comments = data;
+            $http({
+                url: BASE_API + "/users/" + data._id,
+                dataType: 'json',
+                method: 'GET',
+                data: {token: $cookieStore.get("TOKEN")},
+                headers: {
+                    "Content-Type": "application/json"
+                }})
+                .success(function (data, status, headers, config) {
+                    $scope.comments.picture = data.picture;
+                })
+                .error(function (data, status, headers, config) {
+                    alert(data);
+                });
             console.log($scope.comments);
         })
         .error(function (data, status, headers, config) {
