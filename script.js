@@ -470,6 +470,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
     $scope.moments = {};
+    var uid;
 
     $http({
         url: BASE_API + "/users/" + $routeParams.id,
@@ -487,6 +488,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
             $scope.user.picture = data.picture;
             $scope.user.email = data.email;
             $scope.user.about = data.about;
+            uid = data._id;
             $scope.user.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
             $http({
                 url: BASE_API + "/moments/target/" + data._id,
@@ -543,8 +545,9 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
         var datas = {
             token:		    $cookieStore.get("TOKEN"),
             comment:	    $c.comment,
-            type:           "null",
-            date:           "2015-01-08T00:00:00.000Z"
+            type:           "moment",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $c.target_id
         };
 
         $http({
