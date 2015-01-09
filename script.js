@@ -849,7 +849,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope..owner_id= data.owner_id;
+            $scope.owner_id= data.owner_id;
             $scope.comments = data;
             $http({
                 url: BASE_API + "/users/" + data._id,
