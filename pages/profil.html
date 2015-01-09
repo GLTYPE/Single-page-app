@@ -62,13 +62,14 @@
 
             <div class="col-md-12 black_bg" ng-repeat-start="m in moments | orderBy:date:false">
                 <div class="media">
-                    <a class="media-left" href="#">
+                    <a class="media-left" href="#profil/{{m.user._id}}">
                         <img src="{{m.user.picture}}" alt="..." width="64px" height="64px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{m.user.firstname}} {{m.user.lastname}} : {{m.moment.name}}</h4>
                         <p>{{m.moment.description}}</p>
-                        <img src="{{m.moment.picture}}" alt="..." height="128px">
+                        <a href="{{m.moment.picture}}" target="_blank"><img src="{{m.moment.picture}}" alt="..." height="128px"></a>
+                        <br>
                         <form ng-submit="add_comment(c)">
                             <TEXTAREA name="comment" class="form-control" placeholder="comment..." rows=2 COLS=40 ng-model="c.comment" ></TEXTAREA>
                             <input type="hidden" name="target_id" ng-init="c.target_id = m.moment._id" ng-model="c.target_id"/>
@@ -99,7 +100,7 @@
                             <h4 class="modal-title" id="myModalLabel">Success !</h4>
                         </div>
                         <div class="modal-body">
-                            The moment was added successfully to your profil ! Thank you.
+                            The operation was successfully done ! Thank you.
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">OK !</button>

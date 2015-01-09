@@ -483,12 +483,12 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $("#ingrAddModalSuccess").modal({
+                $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
             })
             .error(function (data, status, headers, config) {
-                $('#ingradd-error').show();
+                $('#momentadd-error').show();
             });
     };
 
@@ -587,12 +587,12 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $("#ingrAddModalSuccess").modal({
+                $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
             })
             .error(function (data, status, headers, config) {
-                $('#ingradd-error').show();
+                $('#momentadd-error').show();
             });
     };
 });
