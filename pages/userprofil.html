@@ -59,7 +59,7 @@
             <div class="col-md-12 black_bg" ng-repeat-start="m in moments | orderBy:date:false">
                 <div class="media">
                     <a class="media-left" href="#">
-                        <a href="{{#profil/m.user._id}}"><img src="{{m.user.picture}}" alt="..." width="64px" height="64px"></a>
+                        <a href="{{#profil/m.user.id}}"><img src="{{m.user.picture}}" alt="..." width="64px" height="64px"></a>
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{m.user.firstname}} {{m.user.lastname}} : {{m.moment.name}}</h4>
