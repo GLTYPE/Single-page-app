@@ -46,6 +46,12 @@ footer {
 	padding-top: 160px;
 }
 
+.comments {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
 #bio {
 	float: right;
 	color: white;
