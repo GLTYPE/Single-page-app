@@ -69,6 +69,11 @@
                         <h4 class="media-heading">{{m.user.firstname}} {{m.user.lastname}} : {{m.moment.name}}</h4>
                         <p>{{m.moment.description}}</p>
                         <img src="{{m.moment.picture}}" alt="..." height="128px">
+                        <form ng-submit="add_comment(c)">
+                            <TEXTAREA name="comment" class="form-control" placeholder="comment..." rows=2 COLS=40 ng-model="c.comment" ></TEXTAREA>
+                            <input type="hidden" name="target_id" ng-init="c.target_id = m.moment._id" ng-model="c.target_id"/>
+                            <input type="submit" class="btn btn-default" value="Add the comment!"/>
+                        </form>
                     </div>
                     <div class="col-md-8" ng-repeat-start="c in m.comments">
                         <div class="media">
