@@ -49,6 +49,11 @@
                         <h4 class="media-heading">{{m.user.firstname}} {{m.user.lastname}} : {{m.moment.name}}</h4>
                         <p>{{m.moment.description}}</p>
                         <img src="{{m.moment.picture}}" alt="..." height="128px">
+                        <br>
+                        <form ng-submit="add_comment(comment)">
+                            <TEXTAREA name="comment" class="form-control" placeholder="comment..." rows=2 COLS=40 ng-model="comment.comment" ></TEXTAREA>
+                            <input type="submit" class="btn btn-default" value="Add the comment!"/>
+                        </form>
                     </div>
                     <div class="col-md-8" ng-repeat-start="c in m.comments">
                         <div class="media">

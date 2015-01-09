@@ -508,6 +508,33 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
         .error(function (data, status, headers, config) {
             alert(data);
         });
+
+    $scope.add_comment = function ($comment)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $comment.comment,
+            target_id:      null,
+            date:           "2015-01-08T00:00:00.000Z"
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#ingrAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#ingradd-error').show();
+            });
+    };
 });
 
 gltypeApp.controller('ingredientController', function($scope, $http, $cookieStore, $routeParams) {
