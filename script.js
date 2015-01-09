@@ -396,6 +396,7 @@ gltypeApp.controller('profilController', function($scope, $route, $http, $cookie
                 }})
                 .success(function (data, status, headers, config) {
                     $scope.moments = data;
+                    console.log($scope.moments);
                 })
                 .error(function (data, status, headers, config) {
                     alert(data);
