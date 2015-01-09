@@ -60,7 +60,7 @@
                 </form>
              </div>
 
-            <div class="col-md-offset-2 col-md-8 black_bg" ng-repeat-start="m in moments">
+            <div class="col-md-offset-2 col-md-8 black_bg" ng-repeat-start="m in moments | orderBy:date:false">
                 <div class="media">
                     <a class="media-left" href="#">
                         <img src="{{m.user.picture}}" alt="..." width="64px" height="64px">
