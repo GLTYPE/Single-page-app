@@ -932,7 +932,6 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
