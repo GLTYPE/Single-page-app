@@ -913,6 +913,35 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             });
     };
 
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "product",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.product.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $route.reload();
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
 });
 
 
