@@ -645,7 +645,7 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope.ingredients = data;
+            $scope.comments = data;
         })
         .error(function (data, status, headers, config) {
             alert(data);
@@ -783,7 +783,7 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope.receipes = data;
+            $scope.comments = data;
         })
         .error(function (data, status, headers, config) {
             alert(data);
