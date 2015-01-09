@@ -365,7 +365,7 @@ gltypeApp.controller('statsController', function($scope) {
 
 });
 
-gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
+gltypeApp.controller('profilController', function($scope, $route, $http, $cookieStore) {
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
     $scope.moments = {};
@@ -483,7 +483,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $scope.reload();
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
