@@ -396,6 +396,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 }})
                 .success(function (data, status, headers, config) {
                     $scope.moments = data;
+                    $scope.moments.reverse();
                 })
                 .error(function (data, status, headers, config) {
                     alert(data);
