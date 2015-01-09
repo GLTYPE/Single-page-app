@@ -509,6 +509,35 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
             alert(data);
         });
 
+    $scope.add_moment = function ($moment)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            name:           $moment.name,
+            picture:		$moment.picture,
+            description:	$moment.description,
+            target_id:      $routeParams.id,
+            date:           "2015-01-08T00:00:00.000Z"
+        };
+
+        $http({
+            url: BASE_API + "/moments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#ingrAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#ingradd-error').show();
+            });
+    };
+
     $scope.add_comment = function ($c)
     {
         var datas = {
