@@ -813,7 +813,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             dataType: 'json',
             method: 'GET',
             data: {
-                token:		$cookieStore.get("TOKEN"),
+                token:		$cookieStore.get("TOKEN")
             },
             headers: {
                 "Content-Type": "application/json"
@@ -837,6 +837,24 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 alert(data);
             });
     }
+
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/product",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN"),
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.com = data;
+            console.log($scope.com);
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 
     $http({
         url: BASE_API + "/ingredients",

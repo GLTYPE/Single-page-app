@@ -28,7 +28,6 @@
 
         <form ng-submit="add_comment(c)">
             <TEXTAREA name="comment" class="form-control" placeholder="comment..." rows=2 COLS=40 ng-model="c.comment" ></TEXTAREA>
-            <input type="hidden" name="target_id" ng-init="c.target_id = m.moment._id" ng-model="c.target_id"/>
             <input type="submit" class="btn btn-default" value="Add the comment!"/>
         </form>
         <div class="col-md-8 comments" ng-repeat-start="c in comments">
