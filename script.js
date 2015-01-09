@@ -514,7 +514,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
         var datas = {
             token:		    $cookieStore.get("TOKEN"),
             comment:	    $comment.comment,
-            target_id:      null,
+            type:           "null",
             date:           "2015-01-08T00:00:00.000Z"
         };
 
