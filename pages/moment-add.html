@@ -1,0 +1,46 @@
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>add a moment<br><small>Fill out this small form to add a moment !</small></h1>
+            <hr>
+
+        </div>
+
+    </div>
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <form ng-submit="add_moment(moment)">
+            <label for="name" class="text-left">Name:</label>
+            <input type="text" class="form-control" name="name" placeholder="name of the moment" ng-model="moment.name">
+
+            <label for="picture" class="text-left">Picture:</label>
+            <input type="text" class="form-control" name="picture" placeholder="URL of your picture" ng-model="moment.picture">
+
+            <label for="description" class="text-left">Description:</label>
+            <TEXTAREA name="description" class="form-control" placeholder="Description" rows=2 COLS=40 ng-model="moment.description" ></TEXTAREA>
+
+            <br>
+            <input type="submit" class="btn btn-default" value="Add the product!"/>
+        </form>
+        <div class="alert fade in" id="momadd-error" style="display:none;">
+            Something went wrong. Could not add this moment.
+        </div>
+    </div>
+    <div class="modal fade" id="momAddModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Success !</h4>
+                </div>
+                <div class="modal-body">
+                    The moment was added successfully  ! Thank you.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
