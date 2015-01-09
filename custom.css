@@ -31,7 +31,10 @@ footer {
     background-color: rgba(0, 0, 0, 0.3);
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-top: 50px;
+}
+
+.addmoment {
+    margin-bottom: 50px;
 }
 
 .main-content {
