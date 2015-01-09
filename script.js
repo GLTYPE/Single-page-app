@@ -396,7 +396,6 @@ gltypeApp.controller('profilController', function($scope, $route, $http, $cookie
                 }})
                 .success(function (data, status, headers, config) {
                     $scope.moments = data;
-                    console.log($scope.moments);
                 })
                 .error(function (data, status, headers, config) {
                     alert(data);
@@ -851,6 +850,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
         }})
         .success(function (data, status, headers, config) {
             $scope.comments = data;
+            console.log($scope.comments);
         })
         .error(function (data, status, headers, config) {
             alert(data);
