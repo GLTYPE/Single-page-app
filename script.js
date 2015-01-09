@@ -634,6 +634,23 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
             });
     }
 
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/ingredient",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.ingredients = data;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
+
     //Add Ingredient
     $scope.add_ingredient = function ($ingredient)
     {
@@ -690,6 +707,36 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
             });
     };
 
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "ingredient",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.product.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
+
+
 });
 
 gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, $routeParams) {
@@ -724,6 +771,23 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 alert(data);
             });
     }
+
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/receipe",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.receipes = data;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 
     $http({
         url: BASE_API + "/ingredients",
@@ -799,6 +863,34 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
             });
     };
 
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "receipe",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.product.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
 });
 
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
@@ -849,23 +941,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope.owner_id= data.owner_id;
             $scope.comments = data;
-            $http({
-                url: BASE_API + "/users/" + data._id,
-                dataType: 'json',
-                method: 'GET',
-                data: {token: $cookieStore.get("TOKEN")},
-                headers: {
-                    "Content-Type": "application/json"
-                }})
-                .success(function (data, status, headers, config) {
-                    $scope.comments.picture = data.picture;
-                })
-                .error(function (data, status, headers, config) {
-                    alert(data);
-                });
-            console.log($scope.comments);
         })
         .error(function (data, status, headers, config) {
             alert(data);

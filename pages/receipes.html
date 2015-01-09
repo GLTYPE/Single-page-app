@@ -25,6 +25,23 @@
                 <p>{{description}}</p>
 
             </div>
+        <form ng-submit="add_comment(c)">
+            <TEXTAREA name="comment" class="form-control" placeholder="comment..." rows=2 COLS=40 ng-model="c.comment" ></TEXTAREA>
+            <input type="submit" class="btn btn-default" value="Add the comment!"/>
+        </form>
+        <div class="col-md-12 comments" ng-repeat-start="c in comments">
+            <div class="media">
+                <a class="media-left" href="#profil/{{c.user._id}}">
+                    <img src="{{c.user.picture}}" alt="..." width="64px" height="64px">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{c.user.firstname}} {{c.user.lastname}}</h4>
+                    <p>{{c.comment}}</p>
+                </div>
+            </div>
+        </div>
+        <div  ng-repeat-end=""></div>
+        <br>
             <facebook-like layout="button_count" share="true"></facebook-like>            
     </div>
 </div>
