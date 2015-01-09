@@ -714,7 +714,7 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
             comment:	    $c.comment,
             type:           "ingredient",
             date:           "2015-01-08T00:00:00.000Z",
-            target_id:      $scope.product.id
+            target_id:      $scope.id
         };
 
         $http({
@@ -870,7 +870,7 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
             comment:	    $c.comment,
             type:           "receipe",
             date:           "2015-01-08T00:00:00.000Z",
-            target_id:      $scope.product.id
+            target_id:      $scope.id
         };
 
         $http({
