@@ -455,6 +455,7 @@ gltypeApp.controller('profilController', function($scope, $route, $http, $cookie
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
@@ -495,7 +496,7 @@ gltypeApp.controller('profilController', function($scope, $route, $http, $cookie
 
 });
 
-gltypeApp.controller('userprofilController', function($scope, $http, $cookieStore, $routeParams) {
+gltypeApp.controller('userprofilController', function($scope, $route, $http, $cookieStore, $routeParams) {
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
     $scope.moments = {};
@@ -560,6 +561,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
@@ -588,6 +590,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
