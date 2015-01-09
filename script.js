@@ -849,8 +849,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             "Content-Type": "application/json"
         }})
         .success(function (data, status, headers, config) {
-            $scope.com = data;
-            console.log($scope.com);
+            $scope.comments = data;
         })
         .error(function (data, status, headers, config) {
             alert(data);
