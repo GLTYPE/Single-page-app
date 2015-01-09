@@ -509,11 +509,11 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
             alert(data);
         });
 
-    $scope.add_comment = function ($comment)
+    $scope.add_comment = function ($c)
     {
         var datas = {
             token:		    $cookieStore.get("TOKEN"),
-            comment:	    $comment.comment,
+            comment:	    $c.comment,
             type:           "null",
             date:           "2015-01-08T00:00:00.000Z"
         };
