@@ -483,6 +483,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $scope.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
