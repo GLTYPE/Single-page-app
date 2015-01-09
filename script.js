@@ -843,7 +843,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
         dataType: 'json',
         method: 'GET',
         data: {
-            token: $cookieStore.get("TOKEN"),
+            token: $cookieStore.get("TOKEN")
         },
         headers: {
             "Content-Type": "application/json"
