@@ -40,7 +40,7 @@
                 <br>
             </div>
 
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center addmoment">
                 <form ng-submit="add_moment(moment)">
                     <label for="name" class="text-left">Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="name of the moment" ng-model="moment.name">
@@ -56,20 +56,20 @@
                 </form>
             </div>
 
-            <div class="col-md-offset-2 col-md-8 black_bg" ng-repeat-start="m in moments">
+            <div class="col-md-12 black_bg" ng-repeat-start="m in moments | orderBy:date:false">
                 <div class="media">
-                    <a class="media-left" href="#">
+                    <a class="media-left" href="#profil/{{m.user._id}}">
                         <img src="{{m.user.picture}}" alt="..." width="64px" height="64px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{m.user.firstname}} {{m.user.lastname}} : {{m.moment.name}}</h4>
                         <p>{{m.moment.description}}</p>
-                        <img src="{{m.moment.picture}}" alt="..." height="128px">
+                        <a href="{{m.moment.picture}}" target="_blank"><img src="{{m.moment.picture}}" alt="..." height="128px"></a>
                         <br>
                     </div>
-                    <div class="col-md-8" ng-repeat-start="c in m.comments">
+                    <div class="col-md-8 comments" ng-repeat-start="c in m.comments">
                         <div class="media">
-                            <a class="media-left" href="#">
+                            <a class="media-left" href="#profil/{{c.user._id}}">
                                 <img src="{{c.user.picture}}" alt="..." width="64px" height="64px">
                             </a>
                             <div class="media-body">
@@ -89,21 +89,21 @@
             <div  ng-repeat-end=""></div>
             <div class="col-md-offset-2 col-md-8" style="margin-bottom:10px;"></div>
             <div class="modal fade" id="momentAddModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Success !</h4>
-                        </div>
-                        <div class="modal-body">
-                            The moment was added successfully to your profil ! Thank you.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">OK !</button>
-                        </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Success !</h4>
+                    </div>
+                    <div class="modal-body">
+                        The operation was successfully done ! Thank you.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK !</button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

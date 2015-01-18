@@ -365,7 +365,7 @@ gltypeApp.controller('statsController', function($scope) {
 
 });
 
-gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
+gltypeApp.controller('profilController', function($scope, $route, $http, $cookieStore) {
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
     $scope.moments = {};
@@ -396,7 +396,6 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 }})
                 .success(function (data, status, headers, config) {
                     $scope.moments = data;
-                    $scope.moments.reverse();
                 })
                 .error(function (data, status, headers, config) {
                     alert(data);
@@ -456,6 +455,36 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $route.reload();
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "moment",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $c.target_id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
@@ -467,7 +496,7 @@ gltypeApp.controller('profilController', function($scope, $http, $cookieStore) {
 
 });
 
-gltypeApp.controller('userprofilController', function($scope, $http, $cookieStore, $routeParams) {
+gltypeApp.controller('userprofilController', function($scope, $route, $http, $cookieStore, $routeParams) {
     $scope.webmaster = "Gilles TUAL";
     $scope.user = {};
     $scope.moments = {};
@@ -532,6 +561,7 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
+                $route.reload();
                 $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
@@ -560,12 +590,13 @@ gltypeApp.controller('userprofilController', function($scope, $http, $cookieStor
                 "Content-Type": "application/json"
             }})
             .success(function (data, status, headers, config) {
-                $("#ingrAddModalSuccess").modal({
+                $route.reload();
+                $("#momentAddModalSuccess").modal({
                     keyboard: true
                 })
             })
             .error(function (data, status, headers, config) {
-                $('#ingradd-error').show();
+                $('#momentadd-error').show();
             });
     };
 });
@@ -602,6 +633,23 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
                 alert(data);
             });
     }
+
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/ingredient",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.comments = data;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 
     //Add Ingredient
     $scope.add_ingredient = function ($ingredient)
@@ -659,6 +707,36 @@ gltypeApp.controller('ingredientController', function($scope, $http, $cookieStor
             });
     };
 
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "ingredient",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
+
+
 });
 
 gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, $routeParams) {
@@ -693,6 +771,23 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
                 alert(data);
             });
     }
+
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/receipe",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.comments = data;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 
     $http({
         url: BASE_API + "/ingredients",
@@ -768,6 +863,34 @@ gltypeApp.controller('receipeController', function($scope, $http, $cookieStore, 
             });
     };
 
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "receipe",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
+            });
+    };
+
 });
 
 gltypeApp.controller('productController', function($scope, $http, $cookieStore, $routeParams) {
@@ -782,7 +905,7 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             dataType: 'json',
             method: 'GET',
             data: {
-                token:		$cookieStore.get("TOKEN"),
+                token:		$cookieStore.get("TOKEN")
             },
             headers: {
                 "Content-Type": "application/json"
@@ -806,6 +929,23 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
                 alert(data);
             });
     }
+
+    $http({
+        url: BASE_API + "/comments/target/"+$scope.id+"/type/product",
+        dataType: 'json',
+        method: 'GET',
+        data: {
+            token: $cookieStore.get("TOKEN")
+        },
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.comments = data;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
 
     $http({
         url: BASE_API + "/ingredients",
@@ -879,6 +1019,34 @@ gltypeApp.controller('productController', function($scope, $http, $cookieStore, 
             })
             .error(function (data, status, headers, config) {
                 $('#prodadd-error').show();
+            });
+    };
+
+    $scope.add_comment = function ($c)
+    {
+        var datas = {
+            token:		    $cookieStore.get("TOKEN"),
+            comment:	    $c.comment,
+            type:           "product",
+            date:           "2015-01-08T00:00:00.000Z",
+            target_id:      $scope.product.id
+        };
+
+        $http({
+            url: BASE_API + "/comments",
+            dataType: 'json',
+            method: 'POST',
+            data: datas,
+            headers: {
+                "Content-Type": "application/json"
+            }})
+            .success(function (data, status, headers, config) {
+                $("#momentAddModalSuccess").modal({
+                    keyboard: true
+                })
+            })
+            .error(function (data, status, headers, config) {
+                $('#momentadd-error').show();
             });
     };
 

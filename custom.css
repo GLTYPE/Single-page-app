@@ -33,6 +33,10 @@ footer {
     padding-bottom: 20px;
 }
 
+.addmoment {
+    margin-bottom: 50px;
+}
+
 .main-content {
 	background-color: rgba(255, 255, 255, 0.7);
 	min-height: 800px;
@@ -44,6 +48,13 @@ footer {
 
 .catch {
 	padding-top: 160px;
+}
+
+.comments {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 #bio {
