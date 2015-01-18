@@ -294,26 +294,26 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
         else {
             $http({
                 url: BASE_API + "/search/ingredients/"
-                + $form_search.name + "/"
-                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
-                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
-                dataType: 'json',
-                method: 'GET',
-                headers: {
+                + ($form_search.name ? $form_search.name : "") + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0) + "/"
+                + ($form_search.maxCal ? $form_search.maxCal : 10000000) + "/0/10",
+                //dataType: 'json',
+                method: 'GET'
+                /*headers: {
                     "Content-Type": "application/json"
-                }
+                }*/
             })
                 .success(function (data, status, headers, config) {
                     $scope.ingredients = data;
                 })
                 .error(function (data, status, headers, config) {
-                    alert("error");
+                    alert(BASE_API + "/search/ingredients/" + ($form_search.name ? $form_search.name : "a") + "/" + ($form_search.minCal ? $form_search.minCal : 0) + "/" + ($form_search.maxCal ? $form_search.maxCal : 10000000) + "/0/10");
                 });
             $http({
                 url: BASE_API + "/search/products/"
-                + $form_search.name + "/"
-                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
-                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
+                + ($form_search.name ? $form_search.name : "") + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0) + "/"
+                + ($form_search.maxCal ? $form_search.maxCal : 10000000) + "/0/10",
                 dataType: 'json',
                 method: 'GET',
                 headers: {
@@ -324,13 +324,13 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
                     $scope.products = data;
                 })
                 .error(function (data, status, headers, config) {
-                    alert("error");
+                    alert("error1");
                 });
             $http({
                 url: BASE_API + "/search/receipes/"
-                + $form_search.name + "/"
-                + ($form_search.minCal ? $form_search.minCal : 0 + "/")
-                + ($form_search.minCal ? $form_search.minCal : 10000000 + "/0/10"),
+                + ($form_search.name ? $form_search.name : "") + "/"
+                + ($form_search.minCal ? $form_search.minCal : 0) + "/"
+                + ($form_search.maxCal ? $form_search.maxCal : 10000000) + "/0/10",
                 dataType: 'json',
                 method: 'GET',
                 headers: {
@@ -341,7 +341,7 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
                     $scope.receipes = data;
                 })
                 .error(function (data, status, headers, config) {
-                    alert("error");
+                    alert("error2");
                 });
         }
     }
